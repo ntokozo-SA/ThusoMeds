@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, date
+import json
 
 db = SQLAlchemy()
 
@@ -30,3 +31,51 @@ class PatientIntake(db.Model):
     ai_analysis = db.Column(db.Text)  # JSON string of AI analysis
     
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+class MoodEntry(db.Model):
+    """Model for storing daily mood tracking data for pregnant women"""
+    id = db.Column(db.Integer, primary_key=True)
+    
+    # Patient reference (optional - can track mood without patient record)
+    patient_id = db.Column(db.Integer, db.ForeignKey('patient_intake.id'), nullable=True)
+    
+    # Mood tracking data
+    date = db.Column(db.Date, nullable=False, default=date.today)
+    mood = db.Column(db.String(20), nullable=False)  # excellent, good, okay, anxious, sad, overwhelmed
+    notes = db.Column(db.Text, nullable=True)  # Optional notes from the user
+    symptoms = db.Column(db.Text, nullable=True)  # JSON string of selected symptoms
+    
+    # Metadata
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    
+    # Relationship to patient (optional)
+    patient = db.relationship('PatientIntake', backref=db.backref('mood_entries', lazy=True))
+    
+    def __repr__(self):
+        return f'<MoodEntry {self.date}: {self.mood}>'
+    
+    def to_dict(self):
+        """Convert mood entry to dictionary for JSON serialization"""
+        return {
+            'id': self.id,
+            'patient_id': self.patient_id,
+            'date': self.date.isoformat() if self.date else None,
+            'mood': self.mood,
+            'notes': self.notes,
+            'symptoms': json.loads(self.symptoms) if self.symptoms else [],
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        }
+    
+    @classmethod
+    def from_dict(cls, data):
+        """Create mood entry from dictionary"""
+        mood_entry = cls()
+        mood_entry.patient_id = data.get('patient_id')
+        mood_entry.date = datetime.strptime(data['date'], '%Y-%m-%d').date() if data.get('date') else date.today()
+        mood_entry.mood = data['mood']
+        mood_entry.notes = data.get('notes', '')
+        mood_entry.symptoms = json.dumps(data.get('symptoms', []))
+        return mood_entry
