@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Frontend-Backend Integration</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>🧪 Integration Test</h1>
+    <p>Testing frontend-backend connection with ETA feature</p>
+    
+    <div class="test-section">
+      <h3>📡 Backend Status</h3>
+      <button id="testBackend" class="button">Test Backend Connection</button>
+      <p id="backendStatus"></p>
+    </div>
+
+    <div class="test-section">
+      <h3>📍 Location Test</h3>
+      <button id="testLocation" class="button secondary">Test GPS Location</button>
+      <p id="locationStatus"></p>
+    </div>
+
+    <div class="test-section">
+      <h3>🚗 ETA Test</h3>
+      <button id="testETA" class="button">Test ETA Calculation</button>
+      <p id="etaStatus"></p>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Test backend connection
+      document.getElementById('testBackend').addEventListener('click', async function() {
+        const statusElement = document.getElementById('backendStatus');
+        statusElement.textContent = 'Testing...';
+        
+        try {
+          const response = await fetch('http://localhost:5000/');
+          if (response.ok) {
+            statusElement.textContent = '✅ Backend is running!';
+          } else {
+            statusElement.textContent = '❌ Backend responded with error';
+          }
+        } catch (error) {
+          statusElement.textContent = '❌ Cannot connect to backend. Make sure Flask app is running on port 5000.';
+        }
+      });
+
+      // Test location
+      document.getElementById('testLocation').addEventListener('click', function() {
+        const statusElement = document.getElementById('locationStatus');
+        
+        if (!navigator.geolocation) {
+          statusElement.textContent = '❌ Geolocation not supported';
+          return;
+        }
+
+        statusElement.textContent = 'Getting location...';
+        
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            statusElement.textContent = `✅ Location: ${position.coords.latitude.toFixed(4)}, ${position.coords.longitude.toFixed(4)}`;
+          },
+          function(error) {
+            statusElement.textContent = '❌ Location access denied or failed';
+          }
+        );
+      });
+
+      // Test ETA calculation
+      document.getElementById('testETA').addEventListener('click', async function() {
+        const statusElement = document.getElementById('etaStatus');
+        statusElement.textContent = 'Testing ETA calculation...';
+        
+        const testData = {
+          name: "Test Patient",
+          age: 30,
+          contact: "+1234567890",
+          symptoms: "Test symptoms",
+          arrival_mode: "private car",
+          car_location: {
+            lat: -26.2041,
+            lng: 28.0473
+          }
+        };
+
+        try {
+          const response = await fetch('http://localhost:5000/intake', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(testData)
+          });
+
+          const result = await response.json();
+          
+          if (result.eta_minutes) {
+            statusElement.textContent = `✅ ETA calculated: ${result.eta_minutes} minutes (Patient ID: ${result.id})`;
+          } else {
+            statusElement.textContent = '⚠️ ETA not calculated';
+          }
+        } catch (error) {
+          statusElement.textContent = '❌ ETA test failed: ' + error.message;
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .test-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .test-section h3 {
+      margin-top: 0;
+      color: #007BFF;
+    }
+
+    .test-section p {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+  </style>
+</body>
+</html>

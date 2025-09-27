@@ -21,6 +21,59 @@
   border-color: #007BFF;  /* Blue border when active */
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
+/* Location and ETA specific styles */
+.location-options {
+  margin: 10px 0;
+  display: flex;
+  gap: 20px;
+}
+
+.location-options label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.location-input {
+  margin-top: 15px;
+}
+
+#locationStatus {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+}
+
+.eta-card {
+  background: linear-gradient(135deg, #e8f5e8, #f0f8ff);
+  border: 2px solid #4CAF50;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.eta-card h4 {
+  margin: 0 0 10px 0;
+  color: #2e7d32;
+  font-size: 1.1em;
+}
+
+.eta-card p {
+  margin: 5px 0;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #1b5e20;
+}
+
+.eta-card p:last-child {
+  font-size: 0.9em;
+  font-weight: normal;
+  color: #666;
+}
 /* Modern UI/UX for firstpage.html */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -81,14 +134,161 @@ header h1 {
   transform: translateY(-2px) scale(1.04);
 }
 
+/* Location and Facilities Section Styles */
+.location-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.location-header {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.location-header h3 {
+  margin: 0 0 15px 0;
+  color: #333;
+  font-size: 1.2em;
+}
+
+.location-btn {
+  padding: 12px 24px;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #28a745 60%, #20c997 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+}
+
+.location-btn:hover {
+  background: linear-gradient(90deg, #218838 60%, #1ea085 100%);
+  transform: translateY(-1px);
+}
+
+.location-status {
+  margin-top: 15px;
+  padding: 10px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  font-size: 0.9em;
+  color: #666;
+  text-align: center;
+}
+
+.facilities-list {
+  margin-top: 24px;
+}
+
+.facilities-list h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.3em;
+}
+
+.facilities-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.facility-card {
+  background: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+}
+
+.facility-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.facility-info h4 {
+  margin: 0 0 10px 0;
+  color: #007BFF;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.facility-info p {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.facility-address {
+  color: #333 !important;
+  font-weight: 500;
+}
+
+.facility-distance {
+  color: #28a745 !important;
+  font-weight: 500;
+}
+
+.facility-hours {
+  color: #ffc107 !important;
+  font-weight: 500;
+}
+
+.facility-phone {
+  color: #6c757d !important;
+}
+
+.select-facility-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007BFF 60%, #0056b3 100%);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.select-facility-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #004085 100%);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 18px 8px 18px 8px;
+    margin: 20px auto;
   }
+  
   .facility-btn {
     padding: 12px 10px;
     font-size: 1em;
   }
-
   
+  .location-section {
+    padding: 15px;
+  }
+  
+  .facility-card {
+    padding: 15px;
+  }
+  
+  .facility-info h4 {
+    font-size: 1.1em;
+  }
+  
+  .facility-info p {
+    font-size: 0.85em;
+  }
 }

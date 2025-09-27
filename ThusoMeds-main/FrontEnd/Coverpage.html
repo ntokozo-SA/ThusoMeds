@@ -15,28 +15,198 @@
     <section class="facility-choice">
       <div class="subtitle">Choose facility type:</div>
       <div class="facility-buttons">
-        <button class="facility-btn" onclick="chooseFacility('Clinic')">Clinic</button>
-        <button class="facility-btn" onclick="chooseFacility('Hospital')">Hospital</button>
+        <button class="facility-btn" onclick="showNearbyFacilities('Clinic')">🏥 Clinic</button>
+        <button class="facility-btn" onclick="showNearbyFacilities('Hospital')">🏨 Hospital</button>
       </div>
+    </section>
+    
+    <!-- Location detection section -->
+    <section id="locationSection" class="location-section" style="display: none;">
+      <div class="location-header">
+        <h3>📍 Finding facilities near you...</h3>
+        <button id="getLocationBtn" class="location-btn">📍 Get My Location</button>
+      </div>
+      <div id="locationStatus" class="location-status"></div>
+    </section>
+    
+    <!-- Nearby facilities list -->
+    <section id="facilitiesList" class="facilities-list" style="display: none;">
+      <h3 id="facilitiesTitle">Nearby Facilities</h3>
+      <div id="facilitiesContainer"></div>
     </section>
   </div>
 
   <script>
-    function chooseFacility(type) {
-    // Redirect to the appropriate page based on selection
+    let selectedFacilityType = '';
+    let userLocation = null;
 
-    if (type === 'Clinic') {
-      window.location.href = 'locationC.html'; 
-      while (locationC == true){
-        window.location.href = 'clinic.html';
+    // Initialize when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const getLocationBtn = document.getElementById('getLocationBtn');
+      if (getLocationBtn) {
+        getLocationBtn.addEventListener('click', getCurrentLocation);
       }
-    } else if (type === 'Hospital') {
-      window.location.href = 'locationH.html'; 
-      while (locationH == true){
-        window.location.href = 'hospital.html'; 
-    }}
-  }
-</script>
+    });
+
+    function showNearbyFacilities(type) {
+      selectedFacilityType = type;
+      
+      // Show location section
+      document.getElementById('locationSection').style.display = 'block';
+      document.getElementById('facilitiesList').style.display = 'none';
+      
+      // Update title
+      document.getElementById('facilitiesTitle').textContent = `Nearby ${type}s`;
+      
+      // Show location button
+      document.getElementById('locationStatus').textContent = 'Click the button below to find facilities near you';
+    }
+
+    function getCurrentLocation() {
+      const statusElement = document.getElementById('locationStatus');
+      
+      if (!navigator.geolocation) {
+        statusElement.textContent = '❌ Geolocation not supported by this browser.';
+        return;
+      }
+
+      statusElement.textContent = '📍 Getting your location...';
+      
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          userLocation = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          
+          statusElement.textContent = `✅ Location found! (${userLocation.lat.toFixed(4)}, ${userLocation.lng.toFixed(4)})`;
+          
+          // Show nearby facilities
+          setTimeout(() => {
+            showFacilitiesList();
+          }, 1000);
+        },
+        function(error) {
+          let errorMessage = '❌ Error getting location: ';
+          switch(error.code) {
+            case error.PERMISSION_DENIED:
+              errorMessage += 'Permission denied. Please allow location access.';
+              break;
+            case error.POSITION_UNAVAILABLE:
+              errorMessage += 'Position unavailable.';
+              break;
+            case error.TIMEOUT:
+              errorMessage += 'Request timeout.';
+              break;
+            default:
+              errorMessage += 'Unknown error.';
+              break;
+          }
+          statusElement.textContent = errorMessage;
+        }
+      );
+    }
+
+    function showFacilitiesList() {
+      // Hide location section and show facilities list
+      document.getElementById('locationSection').style.display = 'none';
+      document.getElementById('facilitiesList').style.display = 'block';
+      
+      // Generate sample nearby facilities (in a real app, this would come from an API)
+      const facilities = generateNearbyFacilities();
+      
+      const container = document.getElementById('facilitiesContainer');
+      container.innerHTML = '';
+      
+      facilities.forEach((facility, index) => {
+        const facilityCard = document.createElement('div');
+        facilityCard.className = 'facility-card';
+        facilityCard.innerHTML = `
+          <div class="facility-info">
+            <h4>${facility.name}</h4>
+            <p class="facility-address">📍 ${facility.address}</p>
+            <p class="facility-distance">🚗 ${facility.distance} km away</p>
+            <p class="facility-hours">🕒 ${facility.hours}</p>
+            <p class="facility-phone">📞 ${facility.phone}</p>
+          </div>
+          <button class="select-facility-btn" onclick="selectFacility(${index})">
+            Select This ${selectedFacilityType}
+          </button>
+        `;
+        container.appendChild(facilityCard);
+      });
+    }
+
+    function generateNearbyFacilities() {
+      // Sample facilities data (in a real app, this would come from a database/API)
+      const clinicData = [
+        {
+          name: "City Health Clinic",
+          address: "123 Main Street, Johannesburg",
+          distance: "2.3",
+          hours: "Mon-Fri: 8AM-6PM, Sat: 8AM-2PM",
+          phone: "+27 11 123 4567"
+        },
+        {
+          name: "Community Medical Center",
+          address: "456 Oak Avenue, Sandton",
+          distance: "3.7",
+          hours: "Mon-Fri: 7AM-7PM, Sat-Sun: 9AM-4PM",
+          phone: "+27 11 234 5678"
+        },
+        {
+          name: "Family Care Clinic",
+          address: "789 Pine Road, Rosebank",
+          distance: "5.1",
+          hours: "Mon-Fri: 8AM-5PM",
+          phone: "+27 11 345 6789"
+        }
+      ];
+
+      const hospitalData = [
+        {
+          name: "Johannesburg General Hospital",
+          address: "100 Hospital Drive, Johannesburg",
+          distance: "4.2",
+          hours: "24/7 Emergency Services",
+          phone: "+27 11 456 7890"
+        },
+        {
+          name: "Sandton Medical Center",
+          address: "200 Health Boulevard, Sandton",
+          distance: "6.8",
+          hours: "24/7 Emergency Services",
+          phone: "+27 11 567 8901"
+        },
+        {
+          name: "Rosebank Private Hospital",
+          address: "300 Wellness Way, Rosebank",
+          distance: "7.5",
+          hours: "24/7 Emergency Services",
+          phone: "+27 11 678 9012"
+        }
+      ];
+
+      return selectedFacilityType === 'Clinic' ? clinicData : hospitalData;
+    }
+
+    function selectFacility(facilityIndex) {
+      const facilities = generateNearbyFacilities();
+      const selectedFacility = facilities[facilityIndex];
+      
+      // Store selected facility in localStorage for use in the form
+      localStorage.setItem('selectedFacility', JSON.stringify({
+        type: selectedFacilityType,
+        facility: selectedFacility
+      }));
+      
+      // Redirect to the appropriate form
+      if (selectedFacilityType === 'Clinic') {
+        window.location.href = 'clinic.html';
+      } else {
+        window.location.href = 'hospital.html';
+      }
+    }
   </script>
 </body>
 </html>
