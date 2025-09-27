@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic Pre-Arrival Triage</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🏥 ThusoMed Assistant</h1>
+      <div class="subtitle">The doctor knows you are coming !</div>
+    </header>
+    <section class="facility-choice">
+      <div class="subtitle">Choose facility type:</div>
+      <div class="facility-buttons">
+        <button class="facility-btn" onclick="chooseFacility('Clinic')">Clinic</button>
+        <button class="facility-btn" onclick="chooseFacility('Hospital')">Hospital</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function chooseFacility(type) {
+    // Redirect to the appropriate page based on selection
+
+    if (type === 'Clinic') {
+      window.location.href = 'locationC.html'; 
+      while (locationC == true){
+        window.location.href = 'clinic.html';
+      }
+    } else if (type === 'Hospital') {
+      window.location.href = 'locationH.html'; 
+      while (locationH == true){
+        window.location.href = 'hospital.html'; 
+    }}
+  }
+</script>
+  </script>
+</body>
+</html>

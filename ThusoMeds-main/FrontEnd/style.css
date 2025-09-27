@@ -1,0 +1,94 @@
+.input{
+ display: flexbox;
+}
+
+.box{
+    padding: 0.4em;
+}
+
+.user-input {
+  width: 300px;
+  height: 40px;
+  padding: 10px;          /* Adds space inside the box */
+  font-size: 16px;        /* Makes text bigger */
+  border-radius: 10px;    /* Curved corners */
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;          /* Removes default focus outline */
+}
+
+/* Optional: change border color on focus */
+.user-input:focus {
+  border-color: #007BFF;  /* Blue border when active */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+/* Modern UI/UX for firstpage.html */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #e3f0ff 0%, #f8f9fa 100%);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 36px 32px 32px 32px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #007BFF;
+}
+.subtitle {
+  font-size: 1.1em;
+  color: #555;
+  margin-bottom: 24px;
+}
+
+.facility-choice {
+  margin-top: 24px;
+}
+.facility-label {
+  font-size: 1.15em;
+  margin-bottom: 18px;
+  color: #333;
+}
+.facility-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+.facility-btn {
+  padding: 14px 32px;
+  font-size: 1.1em;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007BFF 60%, #00c6ff 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.facility-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #0096c7 100%);
+  transform: translateY(-2px) scale(1.04);
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 18px 8px 18px 8px;
+  }
+  .facility-btn {
+    padding: 12px 10px;
+    font-size: 1em;
+  }
+
+  
+}
