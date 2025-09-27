@@ -28,16 +28,16 @@
         <h3>📝 1. Personal Information</h3>
         <div class="input">
             <div class="box">
-                <input type="text" name="fullname" placeholder="Full Name" class = "user-input" required>
+                <input type="text" name="fullname" placeholder="Full Name" class="user-input" required autocomplete="name">
             </div>
             <div class="box">
-                <input type="text" name="id" placeholder="ID/Passport (optional)" class = "user-input" pattern="[0-9]{13}|[A-Za-z0-9]{6,12}" title="Enter a valid South African ID (13 digits) or Passport number">
+                <input type="text" name="id" placeholder="ID/Passport (optional)" class="user-input" pattern="[0-9]{13}|[A-Za-z0-9]{6,12}" title="Enter a valid South African ID (13 digits) or Passport number" autocomplete="off">
             </div>
             <div class="box">
-                <input type="number" name="age" placeholder="Age (16-50)" class = "user-input" required min="16" max="50" title="Age must be between 16 and 50 years">
+                <input type="number" name="age" placeholder="Age (16-50)" class="user-input" required min="16" max="50" title="Age must be between 16 and 50 years" inputmode="numeric">
             </div>
             <div class="box">
-                <input type="date" name="date_of_birth" placeholder="Date of Birth" class = "user-input">
+                <input type="date" name="date_of_birth" placeholder="Date of Birth" class="user-input">
             </div>
         </div>
         <div class="box">
@@ -45,21 +45,21 @@
           <p style="color: #e91e63; font-weight: bold;">🤱 Expecting Mother</p>
         </div>
         <div class="box">
-          <input type="text" name="contact" placeholder="Phone / WhatsApp" required>
+          <input type="tel" name="contact" placeholder="Phone / WhatsApp" required class="user-input" autocomplete="tel">
         </div>
         <div class="box">
-          <input type="email" name="email" placeholder="Email (optional)">
+          <input type="email" name="email" placeholder="Email (optional)" class="user-input" autocomplete="email">
         </div>
         <div class="box">
-          <input type="text" name="emergency_contact" placeholder="Emergency Contact Name & Number" class = "user-input">
+          <input type="tel" name="emergency_contact" placeholder="Emergency Contact Name & Number" class="user-input" autocomplete="tel">
         </div>
 
         <h3>🤰 2. Pregnancy Details</h3>
         <div class="box">
-          <input type="number" name="pregnancy_week" placeholder="Current Pregnancy Week (1-40)" min="1" max="40" required>
+          <input type="number" name="pregnancy_week" placeholder="Current Pregnancy Week (1-40)" min="1" max="40" required class="user-input" inputmode="numeric">
         </div>
         <div class="box">
-          <select name="trimester" required>
+          <select name="trimester" required class="user-input">
             <option value="">Select Current Trimester</option>
             <option value="First">First Trimester (1-12 weeks)</option>
             <option value="Second">Second Trimester (13-26 weeks)</option>
@@ -67,13 +67,13 @@
           </select>
         </div>
         <div class="box">
-          <input type="date" name="due_date" placeholder="Expected Due Date" class = "user-input">
+          <input type="date" name="due_date" placeholder="Expected Due Date" class="user-input">
         </div>
         <div class="box">
-          <input type="date" name="last_menstrual_period" placeholder="Last Menstrual Period (LMP)" class = "user-input">
+          <input type="date" name="last_menstrual_period" placeholder="Last Menstrual Period (LMP)" class="user-input">
         </div>
         <div class="box">
-          <select name="blood_type">
+          <select name="blood_type" class="user-input">
             <option value="">Blood Type (optional)</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -86,13 +86,13 @@
           </select>
         </div>
         <div class="box">
-          <input type="number" name="previous_pregnancies" placeholder="Number of Previous Pregnancies" min="0" max="10" value="0">
+          <input type="number" name="previous_pregnancies" placeholder="Number of Previous Pregnancies" min="0" max="10" value="0" class="user-input" inputmode="numeric">
         </div>
         <div class="box">
-          <input type="number" name="previous_births" placeholder="Number of Live Births" min="0" max="10" value="0">
+          <input type="number" name="previous_births" placeholder="Number of Live Births" min="0" max="10" value="0" class="user-input" inputmode="numeric">
         </div>
         <div class="box">
-          <input type="number" name="previous_miscarriages" placeholder="Number of Miscarriages" min="0" max="10" value="0">
+          <input type="number" name="previous_miscarriages" placeholder="Number of Miscarriages" min="0" max="10" value="0" class="user-input" inputmode="numeric">
         </div>
         
 
@@ -109,7 +109,7 @@
         <p>Mild nausea / morning sickness, mild cramping, mild back pain, fatigue, mild swelling, heartburn, constipation, mild headache, round ligament pain</p>
         <label><input type="checkbox" name="symptoms" value="normal_symptoms"> I understand</label><br>
         
-        <input type="text" name="otherSymptoms" placeholder="Other pregnancy-related symptoms or concerns">
+        <input type="text" name="otherSymptoms" placeholder="Other pregnancy-related symptoms or concerns" class="user-input">
 
         <h3>👥 4. Race</h3>
         <label><input type="radio" name="race" value="African"> African</label><br>
@@ -124,7 +124,7 @@
           <input type="radio" name="chronic" value="No"> No
         </label><br>
         <div class="box">
-          <input type="text" name="current_medications" placeholder="List current medications (if any)">
+          <input type="text" name="current_medications" placeholder="List current medications (if any)" class="user-input">
         </div>
         
         <label>Diabetes / High blood pressure / Gestational diabetes? 
@@ -132,7 +132,7 @@
           <input type="radio" name="conditions" value="No"> No
         </label><br>
         <div class="box">
-          <input type="text" name="medical_conditions" placeholder="List any medical conditions">
+          <input type="text" name="medical_conditions" placeholder="List any medical conditions" class="user-input">
         </div>
         
         <label>Multiple pregnancy (twins/triplets)? 
@@ -145,7 +145,7 @@
           <input type="radio" name="previous_complications" value="No"> No
         </label><br>
         <div class="box">
-          <input type="text" name="pregnancy_complications" placeholder="Describe previous pregnancy complications (if any)">
+          <input type="text" name="pregnancy_complications" placeholder="Describe previous pregnancy complications (if any)" class="user-input">
         </div>
         
         <label>Family history of pregnancy complications? 
@@ -165,13 +165,13 @@
 
         <h3>🏠 6. Location & Contact Preferences</h3>
         <div class="box">
-          <input type="text" name="address" placeholder="Home Address" class = "user-input">
+          <input type="text" name="address" placeholder="Home Address" class="user-input" autocomplete="street-address">
         </div>
         <div class="box">
-          <input type="text" name="city" placeholder="City" class = "user-input">
+          <input type="text" name="city" placeholder="City" class="user-input" autocomplete="address-level2">
         </div>
         <div class="box">
-          <input type="text" name="postal_code" placeholder="Postal Code" class = "user-input">
+          <input type="text" name="postal_code" placeholder="Postal Code" class="user-input" autocomplete="postal-code" inputmode="numeric">
         </div>
         
         <h4>Preferred Communication:</h4>
@@ -182,7 +182,7 @@
 
         <h3>🚗 7. Transportation & ETA</h3>
         <div class="box">
-          <select name="arrival_mode" required>
+          <select name="arrival_mode" required class="user-input">
             <option value="">How are you arriving?</option>
             <option value="private car">Private Car</option>
             <option value="ambulance">Ambulance</option>
@@ -207,7 +207,7 @@
           </div>
           
           <div id="addressLocation" class="location-input" style="display: none;">
-            <input type="text" name="car_address" placeholder="Enter your address (e.g., Sandton City, Johannesburg)">
+            <input type="text" name="car_address" placeholder="Enter your address (e.g., Sandton City, Johannesburg)" class="user-input">
           </div>
         </div>
 

@@ -20,16 +20,16 @@
     <form id="pregnancy-form" method="POST" onsubmit="return false;">
       <!-- Personal Info -->
       <label for="fullname">Full Name:</label>
-      <input type="text" id="fullname" name="fullname" required>
+      <input type="text" id="fullname" name="fullname" required autocomplete="name">
 
       <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="12" max="55" required>
+      <input type="number" id="age" name="age" min="12" max="55" required inputmode="numeric">
 
       <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email">
+      <input type="email" id="email" name="email" autocomplete="email">
 
       <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone">
+      <input type="tel" id="phone" name="phone" autocomplete="tel">
 
       <!-- Pregnancy Details -->
       <label for="month">Month of Pregnancy:</label>
@@ -64,7 +64,7 @@
       </select>
 
       <label for="medical-history">Medical History (if any):</label>
-      <textarea id="medical-history" name="medical-history" rows="4"></textarea>
+      <textarea id="medical-history" name="medical-history" rows="4" placeholder="Please describe any relevant medical history..."></textarea>
 
       <!-- Consent -->
       <label class="checkbox-label">
