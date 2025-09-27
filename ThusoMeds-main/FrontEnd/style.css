@@ -7,105 +7,19 @@
 }
 
 .user-input {
-  width: 100%;
-  max-width: 300px;
-  height: 44px;           /* Better touch target */
-  padding: 12px;          /* Adds space inside the box */
-  font-size: 16px;        /* Makes text bigger, prevents zoom on iOS */
+  width: 300px;
+  height: 40px;
+  padding: 10px;          /* Adds space inside the box */
+  font-size: 16px;        /* Makes text bigger */
   border-radius: 10px;    /* Curved corners */
   border: 1px solid #ccc; /* Light gray border */
   outline: none;          /* Removes default focus outline */
-  -webkit-appearance: none; /* Removes iOS styling */
-  appearance: none;
 }
 
 /* Optional: change border color on focus */
 .user-input:focus {
-  border-color: #e91e63;  /* Pink border when active */
-  box-shadow: 0 0 5px rgba(233, 30, 99, 0.5);
-}
-
-/* Pregnancy-specific form styling */
-.pregnancy-info {
-  background: linear-gradient(135deg, #fce4ec, #f8bbd9);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 15px 0;
-  border: 2px solid #f06292;
-}
-
-.pregnancy-symptoms {
-  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-  border-radius: 12px;
-  padding: 20px;
-  margin: 15px 0;
-  border: 2px solid #ffb74d;
-}
-
-.critical-symptoms {
-  background: linear-gradient(135deg, #ffebee, #ffcdd2);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px 0;
-  border-left: 4px solid #f44336;
-}
-
-.urgent-symptoms {
-  background: linear-gradient(135deg, #fff8e1, #ffecb3);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px 0;
-  border-left: 4px solid #ff9800;
-}
-
-.normal-symptoms {
-  background: linear-gradient(135deg, #e8f5e8, #c8e6c9);
-  border-radius: 8px;
-  padding: 15px;
-  margin: 10px 0;
-  border-left: 4px solid #4caf50;
-}
-
-/* Start Track Button Styles */
-.start-track-section {
-  margin-top: 30px;
-  text-align: center;
-  padding: 20px;
-  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-  border-radius: 12px;
-  border: 2px solid #ce93d8;
-}
-
-.start-track-btn {
-  background: linear-gradient(90deg, #4caf50 60%, #66bb6a 100%);
-  color: white;
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.2em;
-  font-weight: bold;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-  margin-bottom: 15px;
-}
-
-.start-track-btn:hover {
-  background: linear-gradient(90deg, #388e3c 60%, #4caf50 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-}
-
-.start-track-btn i {
-  margin-right: 10px;
-  font-size: 1.3em;
-}
-
-.track-description {
-  color: #7b1fa2;
-  font-style: italic;
-  margin: 0;
-  font-size: 0.95em;
+  border-color: #007BFF;  /* Blue border when active */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 /* Location and ETA specific styles */
@@ -160,18 +74,12 @@
   font-weight: normal;
   color: #666;
 }
-/* Modern UI/UX for MamaCare Pregnancy Care */
-* {
-  box-sizing: border-box;
-}
-
+/* Modern UI/UX for firstpage.html */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 50%, #f3e5f5 100%);
+  background: linear-gradient(135deg, #e3f0ff 0%, #f8f9fa 100%);
   margin: 0;
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -182,48 +90,18 @@ body {
   box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   padding: 36px 32px 32px 32px;
   text-align: center;
-  width: 100%;
-}
-
-/* Mobile container adjustments */
-@media (max-width: 480px) {
-  .container {
-    margin: 20px auto;
-    padding: 20px 15px;
-    border-radius: 12px;
-  }
 }
 
 header h1 {
   font-size: 2.2em;
   font-weight: 700;
   margin-bottom: 8px;
-  color: #e91e63;
-  text-shadow: 0 2px 4px rgba(233, 30, 99, 0.2);
+  color: #007BFF;
 }
 .subtitle {
   font-size: 1.1em;
   color: #555;
   margin-bottom: 24px;
-}
-
-.tagline {
-  margin: 20px 0;
-  padding: 15px;
-  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-  border-radius: 10px;
-  border: 1px solid #ce93d8;
-}
-
-.tagline p {
-  margin: 8px 0;
-  color: #7b1fa2;
-  font-weight: 500;
-}
-
-.tagline i {
-  color: #e91e63;
-  margin-right: 8px;
 }
 
 .facility-choice {
@@ -245,14 +123,14 @@ header h1 {
   font-weight: 500;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg, #e91e63 60%, #f06292 100%);
+  background: linear-gradient(90deg, #007BFF 60%, #00c6ff 100%);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(233, 30, 99, 0.15);
+  box-shadow: 0 2px 8px rgba(0,123,255,0.08);
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
 }
 .facility-btn:hover {
-  background: linear-gradient(90deg, #c2185b 60%, #e91e63 100%);
+  background: linear-gradient(90deg, #0056b3 60%, #0096c7 100%);
   transform: translateY(-2px) scale(1.04);
 }
 
@@ -368,17 +246,6 @@ header h1 {
   color: #6c757d !important;
 }
 
-.facility-services {
-  color: #7b1fa2 !important;
-  font-size: 0.9em;
-  font-style: italic;
-  background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ce93d8;
-  margin: 5px 0;
-}
-
 .select-facility-btn {
   width: 100%;
   margin-top: 15px;
@@ -387,135 +254,15 @@ header h1 {
   font-weight: 500;
   border: none;
   border-radius: 8px;
-  background: linear-gradient(90deg, #e91e63 60%, #f06292 100%);
+  background: linear-gradient(90deg, #007BFF 60%, #0056b3 100%);
   color: #fff;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .select-facility-btn:hover {
-  background: linear-gradient(90deg, #c2185b 60%, #e91e63 100%);
+  background: linear-gradient(90deg, #0056b3 60%, #004085 100%);
   transform: translateY(-1px);
-}
-
-/* Mobile-first responsive design */
-@media (max-width: 480px) {
-  .container {
-    padding: 15px 10px;
-    margin: 10px auto;
-    max-width: 100%;
-  }
-  
-  header h1 {
-    font-size: 1.8em;
-  }
-  
-  .subtitle {
-    font-size: 1em;
-  }
-  
-  .facility-btn {
-    padding: 12px 15px;
-    font-size: 0.9em;
-    width: 100%;
-    margin: 5px 0;
-  }
-  
-  .location-section {
-    padding: 10px;
-  }
-  
-  .facility-card {
-    padding: 12px;
-  }
-  
-  .facility-info h4 {
-    font-size: 1em;
-  }
-  
-  .facility-info p {
-    font-size: 0.8em;
-  }
-  
-  .user-input {
-    width: 100%;
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-  
-  .form-container {
-    padding: 15px;
-    margin: 10px;
-  }
-  
-  .form-container h2 {
-    font-size: 1.5em;
-  }
-  
-  .mood-tracker-container {
-    margin: 5px;
-    padding: 10px;
-  }
-  
-  .mood-options {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  
-  .mood-tracker-header h1 {
-    font-size: 1.6em;
-  }
-  
-  .symptoms-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  /* Form section mobile improvements */
-  .form-section {
-    padding: 10px;
-  }
-  
-  .form-section h3 {
-    font-size: 1.2em;
-    margin: 15px 0 10px 0;
-  }
-  
-  .form-section h4 {
-    font-size: 1.1em;
-    margin: 12px 0 8px 0;
-  }
-  
-  .box {
-    padding: 0.3em;
-  }
-  
-  /* Radio and checkbox improvements for mobile */
-  input[type="radio"], input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-right: 8px;
-  }
-  
-  label {
-    display: flex;
-    align-items: center;
-    margin: 8px 0;
-    font-size: 0.9em;
-    line-height: 1.4;
-  }
-  
-  /* Action buttons mobile optimization */
-  .action-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .button {
-    width: 100%;
-    padding: 15px;
-    font-size: 1em;
-    min-height: 48px;
-  }
 }
 
 @media (max-width: 600px) {
@@ -544,295 +291,4 @@ header h1 {
   .facility-info p {
     font-size: 0.85em;
   }
-  
-  .user-input {
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  .form-container {
-    padding: 20px;
-    margin: 15px;
-  }
-  
-  .mood-tracker-container {
-    margin: 10px;
-    padding: 15px;
-  }
-  
-  .mood-options {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    max-width: 100%;
-    margin: 20px auto;
-  }
-  
-  .facility-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .facility-btn {
-    width: 100%;
-  }
-  
-  .location-options {
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .dashboard-btn, .register-btn {
-    width: 100%;
-    justify-content: center;
-    margin-left: 0;
-    margin-top: 10px;
-  }
-  
-  .form-container form input, 
-  .form-container form select, 
-  .form-container form textarea {
-    font-size: 16px; /* Prevents zoom on iOS */
-  }
-  
-  .mood-options {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  
-  .symptoms-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  /* Form improvements for tablets */
-  .form-section {
-    padding: 15px;
-  }
-  
-  .action-buttons {
-    flex-direction: row;
-    gap: 15px;
-  }
-  
-  .button {
-    flex: 1;
-  }
-}
-
-@media (max-width: 1024px) {
-  .container {
-    max-width: 90%;
-  }
-  
-  .facilities-container {
-    gap: 12px;
-  }
-  
-  .facility-card {
-    padding: 18px;
-  }
-  
-  /* Large screen form improvements */
-  .form-section {
-    padding: 20px;
-  }
-  
-  .action-buttons {
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .button {
-    min-width: 200px;
-  }
-}
-
-/* Dashboard Button Styles */
-.dashboard-link {
-  margin-top: 1rem;
-}
-
-.dashboard-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-}
-
-.dashboard-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.dashboard-btn i {
-  font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-  .dashboard-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Pregnancy Form Styles */
-.form-container {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  width: 100%;
-  max-width: 500px;
-  margin: 20px auto;
-  box-sizing: border-box;
-}
-
-.form-container h2 {
-  text-align: center;
-  margin-bottom: 20px;
-  color: #4CAF50;
-}
-
-.form-container form label {
-  display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-container form input, 
-.form-container form select, 
-.form-container form textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 16px; /* Prevents zoom on iOS */
-  box-sizing: border-box;
-  -webkit-appearance: none;
-  appearance: none;
-  min-height: 44px; /* Better touch target */
-}
-
-.form-container form textarea {
-  resize: vertical;
-}
-
-.checkbox-label {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-}
-
-.checkbox-label input {
-  margin-right: 8px;
-  width: auto;
-}
-
-.form-container button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 15px;
-  background-color: #4CAF50;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  min-height: 48px; /* Better touch target */
-  -webkit-tap-highlight-color: transparent;
-}
-
-.form-container button:hover {
-  background-color: #45a049;
-}
-
-/* Register Button Styles */
-.register-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #4CAF50 0%, #66bb6a 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-  margin-left: 10px;
-}
-
-.register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.register-btn i {
-  font-size: 1rem;
-}
-
-@media (max-width: 768px) {
-  .register-btn {
-    width: 100%;
-    justify-content: center;
-    margin-left: 0;
-    margin-top: 10px;
-  }
-}
-
-/* Back to Home Button Styles */
-.back-to-home {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.back-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #6c757d 0%, #868e96 100%);
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
-}
-
-.back-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(108, 117, 125, 0.4);
-  color: white;
-  text-decoration: none;
-}
-
-.back-btn i {
-  font-size: 1rem;
-}
-
-/* Register Section Styles */
-.register-section {
-  text-align: center;
-  margin-top: 30px;
-  padding: 20px;
 }
