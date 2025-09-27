@@ -3,39 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinic Pre-Arrival Triage</title>
+  <title>MamaCare - Pregnancy Care Assistant</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-  <main class="container">
+  <div class="container">
+    <header>
+      <h1>🤱 MamaCare</h1>
+      <div class="subtitle">Welcome to MamaCare - Your Pregnancy Care Journey Starts Here</div>
+      <div class="tagline">
+        <p><i class="fas fa-user-plus"></i> Complete your initial intake to access personalized care</p>
+        <p><i class="fas fa-shield-alt"></i> Your information is secure and private</p>
+      </div>
+    </header>
 
-    <section class="nearest-hospital">
-      <h3>📍 Nearest Facility</h3>
-      <p id="nearestHospital">Detecting nearest hospital or clinic...</p>
+    <section class="intake-intro">
+      <h3>📋 Initial Patient Intake</h3>
+      <p>Please provide your information below to create your MamaCare profile and access our pregnancy care services.</p>
     </section>
 
     <section class="form-section">
       <form id="triageForm">
-        <h3>📝 1. Basic Info</h3>
+        <h3>📝 1. Personal Information</h3>
         <div class="input">
             <div class="box">
                 <input type="text" name="fullname" placeholder="Full Name" class = "user-input" required>
             </div>
             <div class="box">
-                <input type="text" name="id" placeholder="ID/Passport (optional)" class = "user-input">
+                <input type="text" name="id" placeholder="ID/Passport (optional)" class = "user-input" pattern="[0-9]{13}|[A-Za-z0-9]{6,12}" title="Enter a valid South African ID (13 digits) or Passport number">
             </div>
             <div class="box">
-                <input type="number" name="age" placeholder="Age" class = "user-input" required>
+                <input type="number" name="age" placeholder="Age (16-50)" class = "user-input" required min="16" max="50" title="Age must be between 16 and 50 years">
             </div>
-            
+            <div class="box">
+                <input type="date" name="date_of_birth" placeholder="Date of Birth" class = "user-input">
+            </div>
         </div>
         <div class="box">
-          <select name="gender" required>
-          <option value="">Select Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-          <option>Other</option>
-        </select>  
+          <input type="hidden" name="gender" value="Female">
+          <p style="color: #e91e63; font-weight: bold;">🤱 Expecting Mother</p>
         </div>
         <div class="box">
           <input type="text" name="contact" placeholder="Phone / WhatsApp" required>
@@ -43,42 +50,137 @@
         <div class="box">
           <input type="email" name="email" placeholder="Email (optional)">
         </div>
+        <div class="box">
+          <input type="text" name="emergency_contact" placeholder="Emergency Contact Name & Number" class = "user-input">
+        </div>
+
+        <h3>🤰 2. Pregnancy Details</h3>
+        <div class="box">
+          <input type="number" name="pregnancy_week" placeholder="Current Pregnancy Week (1-40)" min="1" max="40" required>
+        </div>
+        <div class="box">
+          <select name="trimester" required>
+            <option value="">Select Current Trimester</option>
+            <option value="First">First Trimester (1-12 weeks)</option>
+            <option value="Second">Second Trimester (13-26 weeks)</option>
+            <option value="Third">Third Trimester (27-40 weeks)</option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="date" name="due_date" placeholder="Expected Due Date" class = "user-input">
+        </div>
+        <div class="box">
+          <input type="date" name="last_menstrual_period" placeholder="Last Menstrual Period (LMP)" class = "user-input">
+        </div>
+        <div class="box">
+          <select name="blood_type">
+            <option value="">Blood Type (optional)</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+        <div class="box">
+          <input type="number" name="previous_pregnancies" placeholder="Number of Previous Pregnancies" min="0" max="10" value="0">
+        </div>
+        <div class="box">
+          <input type="number" name="previous_births" placeholder="Number of Live Births" min="0" max="10" value="0">
+        </div>
+        <div class="box">
+          <input type="number" name="previous_miscarriages" placeholder="Number of Miscarriages" min="0" max="10" value="0">
+        </div>
         
 
-        <h3>📌 2. Visit Type</h3>
-        <label><input type="radio" name="visitType" value="First time"> First time</label><br>
-        <label><input type="radio" name="visitType" value="Follow-up"> Follow-up</label><br>
-        <label><input type="radio" name="visitType" value="Emergency"> Emergency</label><br>
+        <h3>🤰 3. Pregnancy Symptoms Checklist</h3>
+        <h4>🚨 Critical Symptoms (Seek immediate care):</h4>
+        <p>Severe vaginal bleeding, heavy vaginal bleeding, labor contractions, water breaking, severe headache with vision changes, severe abdominal pain, difficulty breathing, chest pain, fainting / loss of consciousness</p>
+        <label><input type="checkbox" name="symptoms" value="critical_symptoms"> I am experiencing critical symptoms</label><br>
+        
+        <h4>⚠️ Urgent Symptoms (See doctor today):</h4>
+        <p>Moderate bleeding / spotting, severe cramping, abdominal pain, severe back pain, severe nausea and vomiting, decreased baby movement, fever, severe swelling, high blood pressure symptoms</p>
+        <label><input type="checkbox" name="symptoms" value="urgent_symptoms"> I am experiencing urgent symptoms</label><br>
+        
+        <h4>✅ Normal Pregnancy Symptoms:</h4>
+        <p>Mild nausea / morning sickness, mild cramping, mild back pain, fatigue, mild swelling, heartburn, constipation, mild headache, round ligament pain</p>
+        <label><input type="checkbox" name="symptoms" value="normal_symptoms"> I understand</label><br>
+        
+        <input type="text" name="otherSymptoms" placeholder="Other pregnancy-related symptoms or concerns">
 
-        <h3>🤒 3. Symptoms Checklist</h3>
-        <label><input type="checkbox" name="symptoms" value="Fever"> Fever</label><br>
-        <label><input type="checkbox" name="symptoms" value="Cough"> Cough / Sore throat</label><br>
-        <label><input type="checkbox" name="symptoms" value="Chest pain"> Chest pain / Shortness of breath</label><br>
-        <label><input type="checkbox" name="symptoms" value="Stomach pain"> Stomach pain / Vomiting / Diarrhoea</label><br>
-        <label><input type="checkbox" name="symptoms" value="Headache"> Headache / Dizziness</label><br>
-        <label><input type="checkbox" name="symptoms" value="Injury"> Injury (burn, cut, fracture)</label><br>
-        <input type="text" name="otherSymptoms" placeholder="Other symptoms">
+        <h3>👥 4. Race</h3>
+        <label><input type="radio" name="race" value="African"> African</label><br>
+        <label><input type="radio" name="race" value="Coloured"> Coloured</label><br>
+        <label><input type="radio" name="race" value="Indian"> Indian</label><br>
+        <label><input type="radio" name="race" value="White"> White</label><br>
+        <label><input type="radio" name="race" value="Other"> Other</label><br>
 
-        <h3>⏱️ 4. Symptom Duration</h3>
-        <label><input type="radio" name="duration" value="Less than 24 hrs"> Less than 24 hrs</label><br>
-        <label><input type="radio" name="duration" value="1–3 days"> 1–3 days</label><br>
-        <label><input type="radio" name="duration" value="More than 3 days"> More than 3 days</label><br>
-
-        <h3>⚠️ 5. Risk Questions</h3>
-        <label>On chronic medication? 
+        <h3>⚠️ 5. Medical History & Risk Factors</h3>
+        <label>Taking any medications during pregnancy? 
           <input type="radio" name="chronic" value="Yes"> Yes 
           <input type="radio" name="chronic" value="No"> No
         </label><br>
-        <label>Diabetes / BP / HIV / TB? 
+        <div class="box">
+          <input type="text" name="current_medications" placeholder="List current medications (if any)">
+        </div>
+        
+        <label>Diabetes / High blood pressure / Gestational diabetes? 
           <input type="radio" name="conditions" value="Yes"> Yes 
           <input type="radio" name="conditions" value="No"> No
         </label><br>
-        <label>Contact with sick person? 
+        <div class="box">
+          <input type="text" name="medical_conditions" placeholder="List any medical conditions">
+        </div>
+        
+        <label>Multiple pregnancy (twins/triplets)? 
+          <input type="radio" name="multiple_pregnancy" value="Yes"> Yes 
+          <input type="radio" name="multiple_pregnancy" value="No"> No
+        </label><br>
+        
+        <label>Previous pregnancy complications? 
+          <input type="radio" name="previous_complications" value="Yes"> Yes 
+          <input type="radio" name="previous_complications" value="No"> No
+        </label><br>
+        <div class="box">
+          <input type="text" name="pregnancy_complications" placeholder="Describe previous pregnancy complications (if any)">
+        </div>
+        
+        <label>Family history of pregnancy complications? 
+          <input type="radio" name="family_history" value="Yes"> Yes 
+          <input type="radio" name="family_history" value="No"> No
+        </label><br>
+        
+        <label>Smoking or alcohol consumption during pregnancy? 
+          <input type="radio" name="substances" value="Yes"> Yes 
+          <input type="radio" name="substances" value="No"> No
+        </label><br>
+        
+        <label>Contact with sick person recently? 
           <input type="radio" name="contactSick" value="Yes"> Yes 
           <input type="radio" name="contactSick" value="No"> No
         </label><br><br>
 
-        <h3>🚗 6. Location & ETA</h3>
+        <h3>🏠 6. Location & Contact Preferences</h3>
+        <div class="box">
+          <input type="text" name="address" placeholder="Home Address" class = "user-input">
+        </div>
+        <div class="box">
+          <input type="text" name="city" placeholder="City" class = "user-input">
+        </div>
+        <div class="box">
+          <input type="text" name="postal_code" placeholder="Postal Code" class = "user-input">
+        </div>
+        
+        <h4>Preferred Communication:</h4>
+        <label><input type="checkbox" name="contact_preferences" value="phone"> Phone calls</label><br>
+        <label><input type="checkbox" name="contact_preferences" value="whatsapp"> WhatsApp</label><br>
+        <label><input type="checkbox" name="contact_preferences" value="email"> Email</label><br>
+        <label><input type="checkbox" name="contact_preferences" value="sms"> SMS</label><br>
+
+        <h3>🚗 7. Transportation & ETA</h3>
         <div class="box">
           <select name="arrival_mode" required>
             <option value="">How are you arriving?</option>
@@ -109,9 +211,28 @@
           </div>
         </div>
 
+        <h3>📋 8. Additional Information</h3>
+        <div class="box">
+          <textarea name="additional_notes" placeholder="Any additional information or special requests?" rows="3" class="user-input"></textarea>
+        </div>
+        
+        <div class="box">
+          <label>
+            <input type="checkbox" name="consent_data" required> 
+            I consent to MamaCare collecting and using my personal information for pregnancy care services
+          </label>
+        </div>
+        
+        <div class="box">
+          <label>
+            <input type="checkbox" name="consent_communication" required> 
+            I consent to receiving pregnancy care updates and reminders via my preferred communication methods
+          </label>
+        </div>
+
         <div class="action-buttons">
-          <button class="button" type="submit">🚑 Submit Triage</button>
-          <button class="button secondary" type="reset">♻️ Reset</button>
+          <button class="button" type="submit">🤱 Complete Initial Intake</button>
+          <button class="button secondary" type="reset">♻️ Reset Form</button>
         </div>
       </form>
     </section>
@@ -119,24 +240,139 @@
     <section class="result-section" id="resultSection" aria-live="polite">
       <div class="loading" id="loading">
         <div class="spinner"></div>
-        <p>⏳ Processing your information...</p>
+        <p>⏳ Creating your MamaCare profile...</p>
       </div>
 
       <div class="result-card" id="resultCard">
-        <div class="result-title">🎟️ Your Ticket</div>
-        <p id="ticketNumber"></p>
-        <p id="severityLevel"></p>
-        <div id="etaInfo" style="display: none;">
-          <div class="eta-card">
-            <h4>⏰ Estimated Arrival Time</h4>
-            <p id="etaMinutes"></p>
-            <p id="etaDetails"></p>
-          </div>
+        <div class="result-title">🎉 Welcome to MamaCare!</div>
+        <p id="profileCreated">Your pregnancy care profile has been successfully created.</p>
+        <p id="patientId"></p>
+        <div id="nextSteps">
+          <h4>📋 Next Steps:</h4>
+          <ul>
+            <li>Your profile is now active in our system</li>
+            <li>You can access pregnancy care services anytime</li>
+            <li>We'll send you personalized care reminders</li>
+            <li>Contact us immediately if you experience any concerning symptoms</li>
+          </ul>
+        </div>
+        
+        <div class="start-track-section">
+          <button class="start-track-btn" onclick="startTracking()">
+            <i class="fas fa-play-circle"></i> Start Track
+          </button>
+          <p class="track-description">Begin tracking your pregnancy journey with personalized care monitoring</p>
         </div>
       </div>
     </section>
-  </main>
+  </div>
 
   <script src="script.js"></script>
+  <script>
+    // Enhanced form validation for ID and age
+    document.addEventListener('DOMContentLoaded', function() {
+      const idInput = document.querySelector('input[name="id"]');
+      const ageInput = document.querySelector('input[name="age"]');
+      const form = document.getElementById('triageForm');
+
+      // ID validation
+      idInput.addEventListener('input', function() {
+        const value = this.value.trim();
+        if (value.length > 0) {
+          // Check if it's a valid South African ID (13 digits)
+          const isSAID = /^[0-9]{13}$/.test(value);
+          // Check if it's a valid passport format (6-12 alphanumeric characters)
+          const isPassport = /^[A-Za-z0-9]{6,12}$/.test(value);
+          
+          if (!isSAID && !isPassport) {
+            this.setCustomValidity('Please enter a valid South African ID (13 digits) or Passport number');
+            this.style.borderColor = '#f44336';
+          } else {
+            this.setCustomValidity('');
+            this.style.borderColor = '#4caf50';
+          }
+        } else {
+          this.setCustomValidity('');
+          this.style.borderColor = '#ccc';
+        }
+      });
+
+      // Age validation
+      ageInput.addEventListener('input', function() {
+        const age = parseInt(this.value);
+        if (age < 16) {
+          this.setCustomValidity('Age must be at least 16 years');
+          this.style.borderColor = '#f44336';
+        } else if (age > 50) {
+          this.setCustomValidity('Age must not exceed 50 years');
+          this.style.borderColor = '#f44336';
+        } else {
+          this.setCustomValidity('');
+          this.style.borderColor = '#4caf50';
+        }
+      });
+
+      // Form submission validation
+      form.addEventListener('submit', function(e) {
+        let isValid = true;
+        
+        // Check ID format if provided
+        const idValue = idInput.value.trim();
+        if (idValue.length > 0) {
+          const isSAID = /^[0-9]{13}$/.test(idValue);
+          const isPassport = /^[A-Za-z0-9]{6,12}$/.test(idValue);
+          if (!isSAID && !isPassport) {
+            alert('Please enter a valid South African ID (13 digits) or Passport number');
+            idInput.focus();
+            isValid = false;
+          }
+        }
+        
+        // Check age range
+        const age = parseInt(ageInput.value);
+        if (age < 16 || age > 50) {
+          alert('Age must be between 16 and 50 years');
+          ageInput.focus();
+          isValid = false;
+        }
+        
+        if (!isValid) {
+          e.preventDefault();
+        }
+      });
+    });
+
+    // Start Track function
+    function startTracking() {
+      // Get patient data from the form
+      const formData = new FormData(document.getElementById('triageForm'));
+      const patientData = {};
+      
+      // Collect all form data
+      for (let [key, value] of formData.entries()) {
+        if (patientData[key]) {
+          // Handle multiple values (like checkboxes)
+          if (Array.isArray(patientData[key])) {
+            patientData[key].push(value);
+          } else {
+            patientData[key] = [patientData[key], value];
+          }
+        } else {
+          patientData[key] = value;
+        }
+      }
+      
+      // Store patient data in localStorage for tracking
+      localStorage.setItem('mamaCarePatient', JSON.stringify(patientData));
+      localStorage.setItem('trackingStarted', 'true');
+      localStorage.setItem('trackingStartDate', new Date().toISOString());
+      
+      // Show success message
+      alert('🎉 Pregnancy tracking started! Your journey with MamaCare begins now.');
+      
+      // Redirect to dashboard or tracking page
+      window.location.href = 'http://127.0.0.1:5500/ThusoMeds-main/FrontEnd/dashboard.html';
+    }
+  </script>
 </body>
 </html>

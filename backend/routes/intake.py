@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from models import db, PatientIntake
 from services.eta_service import ETAService
 from services.emergency_classifier import EmergencyClassifier
+from datetime import datetime
 import json
 
 intake_bp = Blueprint("intake", __name__)
@@ -42,12 +43,22 @@ def create_intake():
             risk_conditions.append("Medical conditions")
         if data.get("contactSick") == "Yes":
             risk_conditions.append("Contact with sick person")
+        if data.get("multiple_pregnancy") == "Yes":
+            risk_conditions.append("Multiple pregnancy")
+        if data.get("previous_complications") == "Yes":
+            risk_conditions.append("Previous pregnancy complications")
         
-        # Classify emergency level
+        # Get pregnancy-specific data
+        pregnancy_week = data.get("pregnancy_week")
+        trimester = data.get("trimester")
+        
+        # Classify emergency level with pregnancy data
         severity_level, ticket_number, color_code = classifier.classify_emergency(
             symptoms=data["symptoms"],
             age=data["age"],
-            risk_conditions=risk_conditions
+            risk_conditions=risk_conditions,
+            pregnancy_week=pregnancy_week,
+            trimester=trimester
         )
         
         # Get detailed analysis
@@ -66,6 +77,22 @@ def create_intake():
         else:
             car_location_str = str(car_location)
 
+    # Parse pregnancy dates
+    due_date = None
+    last_menstrual_period = None
+    
+    if data.get("due_date"):
+        try:
+            due_date = datetime.strptime(data["due_date"], "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            pass
+    
+    if data.get("last_menstrual_period"):
+        try:
+            last_menstrual_period = datetime.strptime(data["last_menstrual_period"], "%Y-%m-%d").date()
+        except (ValueError, TypeError):
+            pass
+
     new_patient = PatientIntake(
         name=data["name"],
         age=data["age"],
@@ -74,6 +101,16 @@ def create_intake():
         arrival_mode=data["arrival_mode"],
         car_location=car_location_str,
         eta_minutes=eta_minutes,
+        # Pregnancy-specific fields
+        is_pregnant=True,  # All patients are pregnant women
+        pregnancy_week=data.get("pregnancy_week"),
+        trimester=data.get("trimester"),
+        due_date=due_date,
+        pregnancy_complications=data.get("pregnancy_complications"),
+        previous_pregnancies=data.get("previous_pregnancies", 0),
+        blood_type=data.get("blood_type"),
+        last_menstrual_period=last_menstrual_period,
+        # AI Classification fields
         severity_level=severity_level,
         ticket_number=ticket_number,
         color_code=color_code,
@@ -131,6 +168,16 @@ def get_intakes():
             "arrival_mode": p.arrival_mode,
             "car_location": car_location,
             "eta_minutes": p.eta_minutes,
+            # Pregnancy-specific fields
+            "is_pregnant": p.is_pregnant,
+            "pregnancy_week": p.pregnancy_week,
+            "trimester": p.trimester,
+            "due_date": p.due_date.isoformat() if p.due_date else None,
+            "pregnancy_complications": p.pregnancy_complications,
+            "previous_pregnancies": p.previous_pregnancies,
+            "blood_type": p.blood_type,
+            "last_menstrual_period": p.last_menstrual_period.isoformat() if p.last_menstrual_period else None,
+            # AI Classification fields
             "severity_level": p.severity_level,
             "ticket_number": p.ticket_number,
             "color_code": p.color_code,
@@ -171,6 +218,16 @@ def get_intake(id):
         "arrival_mode": p.arrival_mode,
         "car_location": car_location,
         "eta_minutes": p.eta_minutes,
+        # Pregnancy-specific fields
+        "is_pregnant": p.is_pregnant,
+        "pregnancy_week": p.pregnancy_week,
+        "trimester": p.trimester,
+        "due_date": p.due_date.isoformat() if p.due_date else None,
+        "pregnancy_complications": p.pregnancy_complications,
+        "previous_pregnancies": p.previous_pregnancies,
+        "blood_type": p.blood_type,
+        "last_menstrual_period": p.last_menstrual_period.isoformat() if p.last_menstrual_period else None,
+        # AI Classification fields
         "severity_level": p.severity_level,
         "ticket_number": p.ticket_number,
         "color_code": p.color_code,

@@ -3,20 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinic Pre-Arrival Triage</title>
+  <title>MamaCare - Pregnancy Care Assistant</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>🏥 ThusoMed Assistant</h1>
-      <div class="subtitle">The doctor knows you are coming !</div>
+      <h1>🤱 MamaCare</h1>
+      <div class="subtitle">Your trusted pregnancy care companion - dedicated to you and your baby's health and safety!</div>
+      <div class="tagline">
+        <p><i class="fas fa-heart"></i> Expert pregnancy care, when you need it most</p>
+        <p><i class="fas fa-baby"></i> 24/7 support for expecting mothers</p>
+      </div>
+      <div class="dashboard-link">
+        <a href="dashboard.html" class="dashboard-btn">
+          <i class="fas fa-tachometer-alt"></i> Pregnancy Care Dashboard
+        </a>
+      </div>
     </header>
     <section class="facility-choice">
-      <div class="subtitle">Choose facility type:</div>
+      <div class="subtitle">Choose your pregnancy care facility:</div>
       <div class="facility-buttons">
-        <button class="facility-btn" onclick="showNearbyFacilities('Clinic')">🏥 Clinic</button>
-        <button class="facility-btn" onclick="showNearbyFacilities('Hospital')">🏨 Hospital</button>
+        <button class="facility-btn" onclick="showNearbyFacilities('Maternity Clinic')">
+          <i class="fas fa-stethoscope"></i> Maternity Clinic<br>
+          <small>Routine prenatal care, checkups, and consultations</small>
+        </button>
+        <button class="facility-btn" onclick="showNearbyFacilities('Hospital')">
+          <i class="fas fa-hospital"></i> Hospital with Labor Ward<br>
+          <small>Emergency care, labor & delivery, and specialized maternity services</small>
+        </button>
       </div>
     </section>
     
@@ -128,9 +144,10 @@
             <p class="facility-distance">🚗 ${facility.distance} km away</p>
             <p class="facility-hours">🕒 ${facility.hours}</p>
             <p class="facility-phone">📞 ${facility.phone}</p>
+            <p class="facility-services">🏥 ${facility.services}</p>
           </div>
           <button class="select-facility-btn" onclick="selectFacility(${index})">
-            Select This ${selectedFacilityType}
+            <i class="fas fa-check"></i> Select This ${selectedFacilityType}
           </button>
         `;
         container.appendChild(facilityCard);
@@ -138,56 +155,62 @@
     }
 
     function generateNearbyFacilities() {
-      // Sample facilities data (in a real app, this would come from a database/API)
+      // Sample pregnancy care facilities data (in a real app, this would come from a database/API)
       const clinicData = [
         {
-          name: "City Health Clinic",
+          name: "MamaCare Maternity Clinic",
           address: "123 Main Street, Johannesburg",
           distance: "2.3",
           hours: "Mon-Fri: 8AM-6PM, Sat: 8AM-2PM",
-          phone: "+27 11 123 4567"
+          phone: "+27 11 123 4567",
+          services: "Prenatal care, ultrasounds, routine checkups"
         },
         {
-          name: "Community Medical Center",
+          name: "Rose Maternity Center",
           address: "456 Oak Avenue, Sandton",
           distance: "3.7",
           hours: "Mon-Fri: 7AM-7PM, Sat-Sun: 9AM-4PM",
-          phone: "+27 11 234 5678"
+          phone: "+27 11 234 5678",
+          services: "Prenatal care, birthing classes, postnatal support"
         },
         {
-          name: "Family Care Clinic",
+          name: "Family Birth Center",
           address: "789 Pine Road, Rosebank",
           distance: "5.1",
           hours: "Mon-Fri: 8AM-5PM",
-          phone: "+27 11 345 6789"
+          phone: "+27 11 345 6789",
+          services: "Complete maternity care, lactation support"
         }
       ];
 
       const hospitalData = [
         {
-          name: "Johannesburg General Hospital",
+          name: "Johannesburg Maternity Hospital",
           address: "100 Hospital Drive, Johannesburg",
           distance: "4.2",
-          hours: "24/7 Emergency Services",
-          phone: "+27 11 456 7890"
+          hours: "24/7 Emergency Services & Labor Ward",
+          phone: "+27 11 456 7890",
+          services: "Labor & delivery, emergency care, NICU"
         },
         {
-          name: "Sandton Medical Center",
+          name: "Sandton Women's Hospital",
           address: "200 Health Boulevard, Sandton",
           distance: "6.8",
-          hours: "24/7 Emergency Services",
-          phone: "+27 11 567 8901"
+          hours: "24/7 Emergency Services & Labor Ward",
+          phone: "+27 11 567 8901",
+          services: "High-risk pregnancies, emergency delivery, specialized care"
         },
         {
-          name: "Rosebank Private Hospital",
+          name: "Rosebank Maternity Wing",
           address: "300 Wellness Way, Rosebank",
           distance: "7.5",
-          hours: "24/7 Emergency Services",
-          phone: "+27 11 678 9012"
+          hours: "24/7 Emergency Services & Labor Ward",
+          phone: "+27 11 678 9012",
+          services: "Complete maternity services, emergency obstetric care"
         }
       ];
 
-      return selectedFacilityType === 'Clinic' ? clinicData : hospitalData;
+      return selectedFacilityType === 'Maternity Clinic' ? clinicData : hospitalData;
     }
 
     function selectFacility(facilityIndex) {
@@ -201,7 +224,7 @@
       }));
       
       // Redirect to the appropriate form
-      if (selectedFacilityType === 'Clinic') {
+      if (selectedFacilityType === 'Maternity Clinic') {
         window.location.href = 'clinic.html';
       } else {
         window.location.href = 'hospital.html';

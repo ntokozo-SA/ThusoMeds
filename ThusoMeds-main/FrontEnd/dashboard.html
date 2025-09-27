@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clinic/Hospital Dashboard - Patient Queue</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Header -->
+    <header class="dashboard-header">
+      <div class="header-left">
+        <h1><i class="fas fa-hospital"></i> ThusoMed Dashboard</h1>
+        <p class="facility-info">City Health Clinic - Patient Queue Management</p>
+      </div>
+      <div class="header-right">
+        <div class="status-indicator">
+          <span class="status-dot online"></span>
+          <span>Live Updates</span>
+        </div>
+        <div class="last-updated">
+          Last updated: <span id="lastUpdated">--:--</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Stats Cards -->
+    <section class="stats-section">
+      <div class="stat-card critical">
+        <div class="stat-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" id="criticalCount">0</div>
+          <div class="stat-label">Critical</div>
+        </div>
+      </div>
+      
+      <div class="stat-card urgent">
+        <div class="stat-icon">
+          <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" id="urgentCount">0</div>
+          <div class="stat-label">Urgent</div>
+        </div>
+      </div>
+      
+      <div class="stat-card normal">
+        <div class="stat-icon">
+          <i class="fas fa-user-md"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" id="normalCount">0</div>
+          <div class="stat-label">Normal</div>
+        </div>
+      </div>
+      
+      <div class="stat-card total">
+        <div class="stat-icon">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-content">
+          <div class="stat-number" id="totalCount">0</div>
+          <div class="stat-label">Total Patients</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <!-- Patient Queue -->
+      <section class="queue-section">
+        <div class="section-header">
+          <h2><i class="fas fa-list-ol"></i> Patient Queue</h2>
+          <div class="queue-controls">
+            <button class="btn btn-primary" onclick="refreshQueue()">
+              <i class="fas fa-sync-alt"></i> Refresh
+            </button>
+            <button class="btn btn-secondary" onclick="toggleAutoRefresh()">
+              <i class="fas fa-play" id="autoRefreshIcon"></i>
+              <span id="autoRefreshText">Auto Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-filter="all" onclick="filterPatients('all')">
+            <i class="fas fa-list"></i> All Patients
+          </button>
+          <button class="tab-btn" data-filter="critical" onclick="filterPatients('critical')">
+            <i class="fas fa-exclamation-triangle"></i> Critical
+          </button>
+          <button class="tab-btn" data-filter="urgent" onclick="filterPatients('urgent')">
+            <i class="fas fa-clock"></i> Urgent
+          </button>
+          <button class="tab-btn" data-filter="normal" onclick="filterPatients('normal')">
+            <i class="fas fa-user-md"></i> Normal
+          </button>
+        </div>
+
+        <!-- Patient Cards Container -->
+        <div class="patients-container" id="patientsContainer">
+          <div class="loading-state" id="loadingState">
+            <div class="loading-spinner"></div>
+            <p>Loading patient data...</p>
+          </div>
+          
+          <div class="empty-state" id="emptyState" style="display: none;">
+            <i class="fas fa-user-slash"></i>
+            <h3>No Patients in Queue</h3>
+            <p>Patients will appear here when they submit their intake forms.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Patient Details Sidebar -->
+      <aside class="patient-details" id="patientDetails" style="display: none;">
+        <div class="details-header">
+          <h3>Patient Details</h3>
+          <button class="close-btn" onclick="closePatientDetails()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="details-content" id="detailsContent">
+          <!-- Patient details will be populated here -->
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Patient Card Template -->
+  <template id="patientCardTemplate">
+    <div class="patient-card" data-severity="" data-id="">
+      <div class="card-header">
+        <div class="priority-badge">
+          <span class="priority-text"></span>
+          <span class="ticket-number"></span>
+        </div>
+        <div class="arrival-info">
+          <span class="eta-badge">
+            <i class="fas fa-clock"></i>
+            <span class="eta-text"></span>
+          </span>
+        </div>
+      </div>
+      
+      <div class="card-body">
+        <div class="patient-info">
+          <h4 class="patient-name"></h4>
+          <div class="patient-details">
+            <span class="patient-age"></span>
+            <span class="patient-contact"></span>
+          </div>
+        </div>
+        
+        <div class="symptoms-section">
+          <h5><i class="fas fa-stethoscope"></i> Symptoms</h5>
+          <p class="symptoms-text"></p>
+        </div>
+        
+        <div class="arrival-section">
+          <div class="arrival-mode">
+            <i class="fas fa-car"></i>
+            <span class="mode-text"></span>
+          </div>
+          <div class="submission-time">
+            <i class="fas fa-calendar-alt"></i>
+            <span class="time-text"></span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <button class="btn btn-outline" onclick="viewPatientDetails(this)">
+          <i class="fas fa-eye"></i> View Details
+        </button>
+        <button class="btn btn-primary" onclick="callPatient(this)">
+          <i class="fas fa-phone"></i> Call
+        </button>
+      </div>
+    </div>
+  </template>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
