@@ -1,0 +1,29 @@
+[33mcommit 50761cd7a91de22df131cd4e10f4cb2aac0c132b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mNOT-FINAL[m[33m)[m
+Author: ntokozo-SA <Ntokozobuthelezi205@gmail.com>
+Date:   Sat Sep 27 17:56:21 2025 +0200
+
+    Complete frontend and backend updates - ready for main branch
+
+D	DASHBOARD_README.md
+D	MAMACARE_README.md
+D	ThusoMeds
+M	ThusoMeds-main/FrontEnd/Coverpage.html
+A	ThusoMeds-main/FrontEnd/clinic.html
+D	ThusoMeds-main/FrontEnd/dashboard-demo.html
+D	ThusoMeds-main/FrontEnd/dashboard.css
+D	ThusoMeds-main/FrontEnd/dashboard.html
+D	ThusoMeds-main/FrontEnd/dashboard.js
+M	ThusoMeds-main/FrontEnd/hospital.html
+D	ThusoMeds-main/FrontEnd/index.html
+D	ThusoMeds-main/FrontEnd/mood-tracker.html
+D	ThusoMeds-main/FrontEnd/pregnancy-form.html
+D	ThusoMeds-main/FrontEnd/register.html
+M	ThusoMeds-main/FrontEnd/style.css
+D	backend/__pycache__/app.cpython-313.pyc
+M	backend/__pycache__/models.cpython-313.pyc
+M	backend/app.py
+D	backend/hospital_backup_20250927_103842.db
+D	backend/migrate_pregnancy_fields.py
+M	backend/models.py
+D	backend/routes/__pycache__/dashboard.cpython-313.pyc
+D	backend/routes/dashboard.py

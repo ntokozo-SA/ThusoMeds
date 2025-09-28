@@ -160,6 +160,14 @@ def get_intakes():
             except (json.JSONDecodeError, TypeError):
                 pass
         
+        # Parse next of kin JSON if it exists
+        next_of_kin = None
+        if p.next_of_kin:
+            try:
+                next_of_kin = json.loads(p.next_of_kin)
+            except (json.JSONDecodeError, TypeError):
+                pass
+        
         result.append({
             "id": p.id,
             "name": p.name,
@@ -178,6 +186,7 @@ def get_intakes():
             "previous_pregnancies": p.previous_pregnancies,
             "blood_type": p.blood_type,
             "last_menstrual_period": p.last_menstrual_period.isoformat() if p.last_menstrual_period else None,
+            "next_of_kin": next_of_kin,
             # AI Classification fields
             "severity_level": p.severity_level,
             "ticket_number": p.ticket_number,
@@ -210,6 +219,14 @@ def get_intake(id):
         except (json.JSONDecodeError, TypeError):
             pass
     
+    # Parse next of kin JSON if it exists
+    next_of_kin = None
+    if p.next_of_kin:
+        try:
+            next_of_kin = json.loads(p.next_of_kin)
+        except (json.JSONDecodeError, TypeError):
+            pass
+    
     return jsonify({
         "id": p.id,
         "name": p.name,
@@ -228,6 +245,7 @@ def get_intake(id):
         "previous_pregnancies": p.previous_pregnancies,
         "blood_type": p.blood_type,
         "last_menstrual_period": p.last_menstrual_period.isoformat() if p.last_menstrual_period else None,
+        "next_of_kin": next_of_kin,
         # AI Classification fields
         "severity_level": p.severity_level,
         "ticket_number": p.ticket_number,
@@ -310,6 +328,11 @@ def submit_pregnancy_form():
         else:
             trimester = "Third"
         
+        # Process next of kin data
+        next_of_kin_json = None
+        if data.get("nextOfKin") and len(data["nextOfKin"]) > 0:
+            next_of_kin_json = json.dumps(data["nextOfKin"])
+        
         # Create new patient intake record
         new_patient = PatientIntake(
             name=data["fullname"],
@@ -324,6 +347,7 @@ def submit_pregnancy_form():
             blood_type=data.get("blood-type"),
             pregnancy_complications=data.get("medical-history"),
             previous_pregnancies=data.get("previous_pregnancies", 0),
+            next_of_kin=next_of_kin_json,
             # Set default values for AI classification (can be updated later)
             severity_level="Light",
             ticket_number="REG001",  # Registration ticket
@@ -341,7 +365,8 @@ def submit_pregnancy_form():
             "ticket_number": new_patient.ticket_number,
             "pregnancy_week": pregnancy_week,
             "trimester": trimester,
-            "due_date": due_date.isoformat() if due_date else None
+            "due_date": due_date.isoformat() if due_date else None,
+            "next_of_kin": data.get("nextOfKin", [])
         }
         
         return jsonify(response_data), 201

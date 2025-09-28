@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Generation Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .ticket { font-size: 24px; font-weight: bold; margin: 10px; padding: 10px; border: 2px solid #333; display: inline-block; }
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Ticket Generation Test</h1>
+    <p>This page tests the ticket generation function. Each ticket should have:</p>
+    <ul>
+        <li>1 letter from: Q, W, E</li>
+        <li>3 numbers from: 1, 2, 3, 4, 5, 6, 7, 8, 9, 0</li>
+    </ul>
+    
+    <button onclick="generateAndDisplayTicket()">Generate New Ticket</button>
+    <button onclick="generateMultipleTickets()">Generate 10 Tickets</button>
+    
+    <div id="tickets"></div>
+
+    <script>
+        // Ticket generation function (same as in script.js)
+        function generateTicket() {
+            // Letters: Q, W, E
+            const letters = ['Q', 'W', 'E'];
+            
+            // Numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+            const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+            
+            // Select one random letter from QWE
+            const randomLetter = letters[Math.floor(Math.random() * letters.length)];
+            
+            // Select three random numbers
+            const randomNumbers = [];
+            for (let i = 0; i < 3; i++) {
+                randomNumbers.push(numbers[Math.floor(Math.random() * numbers.length)]);
+            }
+            
+            // Combine letter and numbers
+            const ticket = randomLetter + randomNumbers.join('');
+            
+            return ticket;
+        }
+
+        function generateAndDisplayTicket() {
+            const ticket = generateTicket();
+            const ticketsDiv = document.getElementById('tickets');
+            ticketsDiv.innerHTML = `<div class="ticket">${ticket}</div>`;
+        }
+
+        function generateMultipleTickets() {
+            const ticketsDiv = document.getElementById('tickets');
+            let html = '<h3>Generated Tickets:</h3>';
+            
+            for (let i = 0; i < 10; i++) {
+                const ticket = generateTicket();
+                html += `<div class="ticket">${ticket}</div>`;
+            }
+            
+            ticketsDiv.innerHTML = html;
+        }
+
+        // Generate initial ticket
+        generateAndDisplayTicket();
+    </script>
+</body>
+</html>

@@ -3,139 +3,283 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clinic Pre-Arrival Triage</title>
+  <title>Clinic Pre-Arrival Triage - ThusoMeds</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body>
-  <main class="container">
+<body class="clinic-body">
+  <!-- Header -->
+  <header class="clinic-header">
+    <div class="header-container">
+      <div class="header-content">
+        <div class="logo-section">
+          <i class="fas fa-hospital-symbol"></i>
+          <h1>ThusoMeds</h1>
+        </div>
+        <div class="header-subtitle">
+          <span class="badge">Emergency Care</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <section class="nearest-hospital">
-      <h3>📍 Nearest Facility</h3>
-      <p id="nearestHospital">Detecting nearest hospital or clinic...</p>
+  <main class="clinic-main">
+
+    <!-- Nearest Facility Card -->
+    <section class="facility-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+        <div class="card-info">
+          <h3>Nearest Facility</h3>
+          <p id="nearestHospital">Detecting nearest hospital or clinic...</p>
+        </div>
+        <div class="loading-spinner" id="facilitySpinner">
+          <i class="fas fa-spinner fa-spin"></i>
+        </div>
+      </div>
     </section>
 
-    <section class="form-section">
-      <form id="triageForm">
-        <h3>📝 1. Basic Info</h3>
-        <div class="input">
-            <div class="box">
-                <input type="text" name="fullname" placeholder="Full Name" class = "user-input" required>
-            </div>
-            <div class="box">
-                <input type="text" name="id" placeholder="ID/Passport (optional)" class = "user-input">
-            </div>
-            <div class="box">
-                <input type="number" name="age" placeholder="Age" class = "user-input" required>
-            </div>
-            
-        </div>
-        <div class="box">
-          <select name="gender" required>
-          <option value="">Select Gender</option>
-          <option>Male</option>
-          <option>Female</option>
-          <option>Other</option>
-        </select>  
-        </div>
-        <div class="box">
-          <input type="text" name="contact" placeholder="Phone / WhatsApp" required>
-        </div>
-        <div class="box">
-          <input type="email" name="email" placeholder="Email (optional)">
+    <!-- Triage Form -->
+    <section class="triage-section">
+      <form id="triageForm" class="triage-form">
+        <div class="form-header">
+          <h3><i class="fas fa-clipboard-list"></i> Emergency Assessment</h3>
+          <p>Please describe your current symptoms and concerns</p>
         </div>
         
+        <div class="form-content">
+          <div class="input-group">
+            <label>
+              <i class="fas fa-stethoscope"></i>
+              Primary Symptoms
+            </label>
+            <div class="symptoms-grid">
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="chest-pain" name="symptoms" value="chest-pain">
+                <label for="chest-pain">Chest Pain</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="shortness-breath" name="symptoms" value="shortness-breath">
+                <label for="shortness-breath">Shortness of Breath</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="severe-headache" name="symptoms" value="severe-headache">
+                <label for="severe-headache">Severe Headache</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="abdominal-pain" name="symptoms" value="abdominal-pain">
+                <label for="abdominal-pain">Abdominal Pain</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="nausea-vomiting" name="symptoms" value="nausea-vomiting">
+                <label for="nausea-vomiting">Nausea & Vomiting</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="fever" name="symptoms" value="fever">
+                <label for="fever">Fever</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="dizziness" name="symptoms" value="dizziness">
+                <label for="dizziness">Dizziness</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="bleeding" name="symptoms" value="bleeding">
+                <label for="bleeding">Bleeding</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="contractions" name="symptoms" value="contractions">
+                <label for="contractions">Contractions (Pregnancy)</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="water-broke" name="symptoms" value="water-broke">
+                <label for="water-broke">Water Broke (Pregnancy)</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="severe-back-pain" name="symptoms" value="severe-back-pain">
+                <label for="severe-back-pain">Severe Back Pain</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="loss-consciousness" name="symptoms" value="loss-consciousness">
+                <label for="loss-consciousness">Loss of Consciousness</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="difficulty-speaking" name="symptoms" value="difficulty-speaking">
+                <label for="difficulty-speaking">Difficulty Speaking</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="vision-problems" name="symptoms" value="vision-problems">
+                <label for="vision-problems">Vision Problems</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="swelling" name="symptoms" value="swelling">
+                <label for="swelling">Swelling</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="rash" name="symptoms" value="rash">
+                <label for="rash">Rash</label>
+              </div>
+              <div class="symptom-checkbox">
+                <input type="checkbox" id="allergic-reaction" name="symptoms" value="allergic-reaction">
+                <label for="allergic-reaction">Allergic Reaction</label>
+              </div>
+            </div>
+          </div>
 
-        <h3>📌 2. Visit Type</h3>
-        <label><input type="radio" name="visitType" value="First time"> First time</label><br>
-        <label><input type="radio" name="visitType" value="Follow-up"> Follow-up</label><br>
-        <label><input type="radio" name="visitType" value="Emergency"> Emergency</label><br>
+          <div class="input-group">
+            <label for="painLevel">
+              <i class="fas fa-thermometer-half"></i>
+              Pain Level (1-10)
+            </label>
+            <div class="pain-scale">
+              <input type="range" id="painLevel" min="1" max="10" value="5">
+              <div class="pain-labels">
+                <span>Mild</span>
+                <span id="painValue">5</span>
+                <span>Severe</span>
+              </div>
+            </div>
+          </div>
 
-        <h3>🤒 3. Symptoms Checklist</h3>
-        <label><input type="checkbox" name="symptoms" value="Fever"> Fever</label><br>
-        <label><input type="checkbox" name="symptoms" value="Cough"> Cough / Sore throat</label><br>
-        <label><input type="checkbox" name="symptoms" value="Chest pain"> Chest pain / Shortness of breath</label><br>
-        <label><input type="checkbox" name="symptoms" value="Stomach pain"> Stomach pain / Vomiting / Diarrhoea</label><br>
-        <label><input type="checkbox" name="symptoms" value="Headache"> Headache / Dizziness</label><br>
-        <label><input type="checkbox" name="symptoms" value="Injury"> Injury (burn, cut, fracture)</label><br>
-        <input type="text" name="otherSymptoms" placeholder="Other symptoms">
-
-        <h3>⏱️ 4. Symptom Duration</h3>
-        <label><input type="radio" name="duration" value="Less than 24 hrs"> Less than 24 hrs</label><br>
-        <label><input type="radio" name="duration" value="1–3 days"> 1–3 days</label><br>
-        <label><input type="radio" name="duration" value="More than 3 days"> More than 3 days</label><br>
-
-        <h3>⚠️ 5. Risk Questions</h3>
-        <label>On chronic medication? 
-          <input type="radio" name="chronic" value="Yes"> Yes 
-          <input type="radio" name="chronic" value="No"> No
-        </label><br>
-        <label>Diabetes / BP / HIV / TB? 
-          <input type="radio" name="conditions" value="Yes"> Yes 
-          <input type="radio" name="conditions" value="No"> No
-        </label><br>
-        <label>Contact with sick person? 
-          <input type="radio" name="contactSick" value="Yes"> Yes 
-          <input type="radio" name="contactSick" value="No"> No
-        </label><br><br>
-
-        <h3>🚗 6. Location & ETA</h3>
-        <div class="box">
-          <select name="arrival_mode" required>
-            <option value="">How are you arriving?</option>
-            <option value="private car">Private Car</option>
-            <option value="ambulance">Ambulance</option>
-            <option value="public transport">Public Transport</option>
-            <option value="walking">Walking</option>
-            <option value="other">Other</option>
-          </select>
         </div>
-        
-        <div class="box" id="locationSection" style="display: none;">
-          <label>📍 Your Current Location (for ETA calculation)</label>
-          <div class="location-options">
-            <label><input type="radio" name="locationType" value="gps" checked> Use GPS Location</label>
-            <label><input type="radio" name="locationType" value="address"> Enter Address</label>
-          </div>
-          
-          <div id="gpsLocation" class="location-input">
-            <button type="button" id="getLocationBtn" class="button secondary">📍 Get My Location</button>
-            <input type="hidden" name="car_lat" id="carLat">
-            <input type="hidden" name="car_lng" id="carLng">
-            <p id="locationStatus"></p>
-          </div>
-          
-          <div id="addressLocation" class="location-input" style="display: none;">
-            <input type="text" name="car_address" placeholder="Enter your address (e.g., Sandton City, Johannesburg)">
-          </div>
-        </div>
 
-        <div class="action-buttons">
-          <button class="button" type="submit">🚑 Submit Triage</button>
-          <button class="button secondary" type="reset">♻️ Reset</button>
+        <div class="form-actions">
+          <button type="submit" class="submit-btn">
+            <i class="fas fa-paper-plane"></i>
+            <span>Submit Triage</span>
+          </button>
         </div>
       </form>
     </section>
 
-    <section class="result-section" id="resultSection" aria-live="polite">
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <p>⏳ Processing your information...</p>
+    <!-- Results Section -->
+    <section class="result-section" id="resultSection" style="display: none;">
+      <div class="loading-overlay" id="loading" style="display: none;">
+        <div class="loading-content">
+          <div class="spinner-large">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3>Processing your triage...</h3>
+          <p>Our medical AI is analyzing your symptoms</p>
+        </div>
       </div>
 
       <div class="result-card" id="resultCard">
-        <div class="result-title">🎟️ Your Ticket</div>
-        <p id="ticketNumber"></p>
-        <p id="severityLevel"></p>
-        <div id="etaInfo" style="display: none;">
-          <div class="eta-card">
-            <h4>⏰ Estimated Arrival Time</h4>
-            <p id="etaMinutes"></p>
-            <p id="etaDetails"></p>
+        <div class="result-header">
+          <div class="ticket-icon">
+            <i class="fas fa-ticket-alt"></i>
+          </div>
+          <h3>Your Emergency Ticket</h3>
+        </div>
+        
+        <div class="result-content">
+          <div class="ticket-info">
+            <div class="ticket-number">
+              <span class="label">Ticket #</span>
+              <span id="ticketNumber" class="value"></span>
+            </div>
+            <div class="severity-level">
+              <span class="label">Priority</span>
+              <span id="severityLevel" class="severity-badge"></span>
+            </div>
+          </div>
+
+          <div id="etaInfo" class="eta-section" style="display: none;">
+            <div class="eta-card">
+              <div class="eta-header">
+                <i class="fas fa-clock"></i>
+                <h4>Estimated Arrival Time</h4>
+              </div>
+              <div class="eta-content">
+                <div class="eta-time" id="etaMinutes"></div>
+                <div class="eta-details" id="etaDetails"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Chat System -->
+    <section class="chat-section" id="chatSection" style="display: none;">
+      <div class="chat-container">
+        <div class="chat-header">
+          <div class="chat-title">
+            <i class="fas fa-comments-medical"></i>
+            <div>
+              <h3>Emergency Care Chat</h3>
+              <p>Get immediate guidance while heading to the hospital</p>
+            </div>
+          </div>
+          <div class="chat-status">
+            <div class="status-indicator online"></div>
+            <span>Online</span>
+          </div>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-avatar">
+              <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+              <div class="message-header">
+                <strong>Medical Assistant</strong>
+                <span class="timestamp">Just now</span>
+              </div>
+              <p>Hello! I'm here to help guide you through emergency pregnancy care while you're on your way to the hospital. What symptoms or concerns do you have?</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="chat-input-container">
+          <div class="quick-actions">
+            <button class="quick-btn" onclick="sendQuickMessage('Contractions')">
+              <i class="fas fa-baby"></i>
+              <span>Contractions</span>
+            </button>
+            <button class="quick-btn" onclick="sendQuickMessage('Bleeding')">
+              <i class="fas fa-tint"></i>
+              <span>Bleeding</span>
+            </button>
+            <button class="quick-btn" onclick="sendQuickMessage('Pain')">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Severe Pain</span>
+            </button>
+            <button class="quick-btn" onclick="sendQuickMessage('Water broke')">
+              <i class="fas fa-water"></i>
+              <span>Water Broke</span>
+            </button>
+          </div>
+          
+          <div class="chat-input">
+            <div class="input-wrapper">
+              <input type="text" id="chatInput" placeholder="Describe your symptoms or ask a question..." maxlength="500">
+              <button id="sendBtn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Footer -->
+  <footer class="clinic-footer">
+    <div class="footer-content">
+      <p>&copy; 2024 ThusoMeds. Emergency healthcare assistance.</p>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Privacy Policy</a>
+        <a href="#" class="footer-link">Terms of Service</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>

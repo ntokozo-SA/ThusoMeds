@@ -9,74 +9,228 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <div class="form-container">
-    <h2>Pregnancy Information Form</h2>
-    <div id="success-message" style="display: none; color: green; margin-bottom: 20px; padding: 10px; background-color: #d4edda; border: 1px solid #c3e6cb; border-radius: 4px;">
-      <strong>Success!</strong> Your pregnancy information has been submitted successfully.
+  <div class="pregnancy-form-container">
+    <!-- Header Section -->
+    <div class="form-header">
+      <div class="header-icon">
+        <i class="fas fa-heart"></i>
+      </div>
+      <h1 class="form-title">Pregnancy Information Form</h1>
+      <p class="form-subtitle">Please provide your information to get started with your pregnancy care journey</p>
     </div>
-    <div id="error-message" style="display: none; color: red; margin-bottom: 20px; padding: 10px; background-color: #f8d7da; border: 1px solid #f5c6cb; border-radius: 4px;">
-      <strong>Error!</strong> <span id="error-text"></span>
+
+    <!-- Messages -->
+    <div id="welcome-message" class="message-card success-message" style="display: none;">
+      <div class="message-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="message-content">
+        <h3>Welcome <strong id="welcome-name"></strong>!</h3>
+        <p>Your pregnancy information has been submitted successfully.</p>
+      </div>
     </div>
+    
+    <div id="success-message" class="message-card success-message" style="display: none;">
+      <div class="message-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="message-content">
+        <h3>Success!</h3>
+        <p>Your pregnancy information has been submitted successfully.</p>
+      </div>
+    </div>
+    
+    <div id="error-message" class="message-card error-message" style="display: none;">
+      <div class="message-icon">
+        <i class="fas fa-exclamation-circle"></i>
+      </div>
+      <div class="message-content">
+        <h3>Error!</h3>
+        <p id="error-text"></p>
+      </div>
+    </div>
+
     <form id="pregnancy-form" method="POST" onsubmit="return false;">
-      <!-- Personal Info -->
-      <label for="fullname">Full Name:</label>
-      <input type="text" id="fullname" name="fullname" required autocomplete="name">
+      <!-- Personal Information Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <h3 class="section-title">Personal Information</h3>
+        </div>
+        <div class="section-fields">
+          <div class="field-group">
+            <label for="fullname">Full Name *</label>
+            <input type="text" id="fullname" name="fullname" required autocomplete="name" placeholder="Enter your full name">
+          </div>
+          
+          <div class="field-group">
+            <label for="age">Age *</label>
+            <input type="number" id="age" name="age" min="12" max="55" required inputmode="numeric" placeholder="Enter your age">
+          </div>
+          
+          <div class="field-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="Enter your email address">
+          </div>
+          
+          <div class="field-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="Enter your phone number">
+          </div>
+        </div>
+      </div>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="12" max="55" required inputmode="numeric">
+      <!-- Pregnancy Details Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-baby"></i>
+          </div>
+          <h3 class="section-title">Pregnancy Details</h3>
+        </div>
+        <div class="section-fields">
+          <div class="field-group">
+            <label for="month">Month of Pregnancy *</label>
+            <select id="month" name="month" required>
+              <option value="">-- Select Month --</option>
+              <option value="1">1st Month</option>
+              <option value="2">2nd Month</option>
+              <option value="3">3rd Month</option>
+              <option value="4">4th Month</option>
+              <option value="5">5th Month</option>
+              <option value="6">6th Month</option>
+              <option value="7">7th Month</option>
+              <option value="8">8th Month</option>
+              <option value="9">9th Month</option>
+            </select>
+          </div>
+          
+          <div class="field-group">
+            <label for="due-date">Expected Due Date *</label>
+            <input type="date" id="due-date" name="due-date" required>
+          </div>
+        </div>
+      </div>
 
-      <label for="email">Email Address:</label>
-      <input type="email" id="email" name="email" autocomplete="email">
+      <!-- Medical Information Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-heartbeat"></i>
+          </div>
+          <h3 class="section-title">Medical Information</h3>
+        </div>
+        <div class="section-fields">
+          <div class="field-group">
+            <label for="blood-type">Blood Type</label>
+            <select id="blood-type" name="blood-type">
+              <option value="">-- Select Blood Type --</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+          
+          <div class="field-group full-width">
+            <label for="medical-history">Medical History (if any)</label>
+            <textarea id="medical-history" name="medical-history" rows="4" placeholder="Please describe any relevant medical history, allergies, or conditions..."></textarea>
+          </div>
+        </div>
+      </div>
 
-      <label for="phone">Phone Number:</label>
-      <input type="tel" id="phone" name="phone" autocomplete="tel">
+      <!-- Next of Kin Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3 class="section-title">Next of Kin Information</h3>
+        </div>
+        <div class="section-description">
+          <p>Add up to 4 emergency contacts who can be reached in case of emergency.</p>
+        </div>
+        
+        <div id="next-of-kin-container">
+          <!-- First next of kin entry -->
+          <div class="next-of-kin-entry" data-index="0">
+            <div class="next-of-kin-header">
+              <h4>Next of Kin #1</h4>
+              <button type="button" class="remove-kin-btn" style="display: none;">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <div class="next-of-kin-fields">
+              <div class="field-group">
+                <label for="kin-name-0">Full Name</label>
+                <input type="text" id="kin-name-0" name="kin-name-0" placeholder="Enter full name">
+              </div>
+              
+              <div class="field-group">
+                <label for="kin-relationship-0">Relationship</label>
+                <select id="kin-relationship-0" name="kin-relationship-0">
+                  <option value="">-- Select Relationship --</option>
+                  <option value="spouse">Spouse/Partner</option>
+                  <option value="parent">Parent</option>
+                  <option value="sibling">Sibling</option>
+                  <option value="child">Child</option>
+                  <option value="friend">Friend</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div class="field-group">
+                <label for="kin-phone-0">Cell Phone Number</label>
+                <input type="tel" id="kin-phone-0" name="kin-phone-0" placeholder="Enter cell phone number">
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button type="button" id="add-next-of-kin" class="add-kin-btn">
+          <i class="fas fa-plus"></i>
+          Add Next of Kin
+        </button>
+      </div>
 
-      <!-- Pregnancy Details -->
-      <label for="month">Month of Pregnancy:</label>
-      <select id="month" name="month" required>
-        <option value="">-- Select --</option>
-        <option value="1">1st Month</option>
-        <option value="2">2nd Month</option>
-        <option value="3">3rd Month</option>
-        <option value="4">4th Month</option>
-        <option value="5">5th Month</option>
-        <option value="6">6th Month</option>
-        <option value="7">7th Month</option>
-        <option value="8">8th Month</option>
-        <option value="9">9th Month</option>
-      </select>
+      <!-- Consent Section -->
+      <div class="form-section">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-shield-check"></i>
+          </div>
+          <h3 class="section-title">Confirmation</h3>
+        </div>
+        <div class="consent-section">
+          <div class="consent-checkbox">
+            <input type="checkbox" id="consent" name="consent" required>
+            <label for="consent" class="consent-label">
+              <span class="checkbox-custom"></span>
+              <span class="consent-text">I confirm that the above information is accurate and I consent to the processing of my data for pregnancy care purposes.</span>
+            </label>
+          </div>
+        </div>
+      </div>
 
-      <label for="due-date">Expected Due Date:</label>
-      <input type="date" id="due-date" name="due-date" required>
-
-      <!-- Medical Info -->
-      <label for="blood-type">Blood Type:</label>
-      <select id="blood-type" name="blood-type">
-        <option value="">-- Select --</option>
-        <option value="A+">A+</option>
-        <option value="A-">A-</option>
-        <option value="B+">B+</option>
-        <option value="B-">B-</option>
-        <option value="O+">O+</option>
-        <option value="O-">O-</option>
-        <option value="AB+">AB+</option>
-        <option value="AB-">AB-</option>
-      </select>
-
-      <label for="medical-history">Medical History (if any):</label>
-      <textarea id="medical-history" name="medical-history" rows="4" placeholder="Please describe any relevant medical history..."></textarea>
-
-      <!-- Consent -->
-      <label class="checkbox-label">
-        <input type="checkbox" id="consent" name="consent" required>
-        I confirm that the above information is accurate.
-      </label>
-
-      <button type="submit">Submit</button>
+      <!-- Submit Section -->
+      <div class="submit-section">
+        <button type="submit" class="submit-btn">
+          <span class="submit-icon">
+            <i class="fas fa-paper-plane"></i>
+          </span>
+          <span class="submit-text">Submit Information</span>
+        </button>
+      </div>
     </form>
     
     <!-- Mood Tracker Button -->
-    <div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-radius: 12px; border: 2px solid #ce93d8;">
+    <div id="mood-tracker-section" style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f3e5f5, #e1bee7); border-radius: 12px; border: 2px solid #ce93d8;">
       <h3 style="color: #7b1fa2; margin-bottom: 15px;">Track Your Daily Mood</h3>
       <p style="color: #666; margin-bottom: 20px;">Monitor your emotional wellbeing throughout your pregnancy journey</p>
       <button type="button" id="mood-tracker-btn" style="background: linear-gradient(135deg, #e91e63, #f06292); color: white; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);">
@@ -88,6 +242,104 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const form = document.getElementById('pregnancy-form');
+      let nextOfKinCount = 1; // Start with 1 since we have the first entry
+      
+      // Next of Kin Management
+      const addNextOfKinBtn = document.getElementById('add-next-of-kin');
+      const nextOfKinContainer = document.getElementById('next-of-kin-container');
+      
+      // Add next of kin functionality
+      addNextOfKinBtn.addEventListener('click', function() {
+        if (nextOfKinCount >= 4) {
+          alert('You can only add up to 4 next of kin contacts.');
+          return;
+        }
+        
+        nextOfKinCount++;
+        const newEntry = createNextOfKinEntry(nextOfKinCount);
+        nextOfKinContainer.appendChild(newEntry);
+        
+        // Update remove buttons visibility
+        updateRemoveButtons();
+        
+        // Disable add button if we've reached the limit
+        if (nextOfKinCount >= 4) {
+          addNextOfKinBtn.disabled = true;
+          addNextOfKinBtn.textContent = 'Maximum 4 contacts reached';
+        }
+      });
+      
+      // Create a new next of kin entry
+      function createNextOfKinEntry(index) {
+        const entry = document.createElement('div');
+        entry.className = 'next-of-kin-entry';
+        entry.setAttribute('data-index', index);
+        
+        entry.innerHTML = `
+          <div class="next-of-kin-header">
+            <h4>Next of Kin #${index}</h4>
+            <button type="button" class="remove-kin-btn">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="next-of-kin-fields">
+            <div class="field-group">
+              <label for="kin-name-${index}">Full Name</label>
+              <input type="text" id="kin-name-${index}" name="kin-name-${index}" placeholder="Enter full name">
+            </div>
+            
+            <div class="field-group">
+              <label for="kin-relationship-${index}">Relationship</label>
+              <select id="kin-relationship-${index}" name="kin-relationship-${index}">
+                <option value="">-- Select Relationship --</option>
+                <option value="spouse">Spouse/Partner</option>
+                <option value="parent">Parent</option>
+                <option value="sibling">Sibling</option>
+                <option value="child">Child</option>
+                <option value="friend">Friend</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="field-group">
+              <label for="kin-phone-${index}">Cell Phone Number</label>
+              <input type="tel" id="kin-phone-${index}" name="kin-phone-${index}" placeholder="Enter cell phone number">
+            </div>
+          </div>
+        `;
+        
+        // Add remove functionality to the new entry
+        const removeBtn = entry.querySelector('.remove-kin-btn');
+        removeBtn.addEventListener('click', function() {
+          entry.remove();
+          nextOfKinCount--;
+          updateRemoveButtons();
+          
+          // Re-enable add button if we're under the limit
+          if (nextOfKinCount < 4) {
+            addNextOfKinBtn.disabled = false;
+            addNextOfKinBtn.innerHTML = '<i class="fas fa-plus"></i> Add Next of Kin';
+          }
+        });
+        
+        return entry;
+      }
+      
+      // Update remove buttons visibility
+      function updateRemoveButtons() {
+        const entries = nextOfKinContainer.querySelectorAll('.next-of-kin-entry');
+        entries.forEach((entry, index) => {
+          const removeBtn = entry.querySelector('.remove-kin-btn');
+          if (entries.length > 1) {
+            removeBtn.style.display = 'block';
+          } else {
+            removeBtn.style.display = 'none';
+          }
+        });
+      }
+      
+      // Initialize remove buttons visibility
+      updateRemoveButtons();
       
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
@@ -115,6 +367,38 @@
           // Add consent checkbox value
           data.consent = document.getElementById('consent').checked;
           
+          // Collect next of kin data
+          const nextOfKinData = [];
+          const entries = nextOfKinContainer.querySelectorAll('.next-of-kin-entry');
+          
+          entries.forEach((entry, index) => {
+            const name = entry.querySelector(`input[name="kin-name-${entry.getAttribute('data-index')}"]`)?.value;
+            const relationship = entry.querySelector(`select[name="kin-relationship-${entry.getAttribute('data-index')}"]`)?.value;
+            const phone = entry.querySelector(`input[name="kin-phone-${entry.getAttribute('data-index')}"]`)?.value;
+            
+            // Only add if at least name is provided
+            if (name && name.trim()) {
+              nextOfKinData.push({
+                name: name.trim(),
+                relationship: relationship || '',
+                phone: phone || ''
+              });
+            }
+          });
+          
+          data.nextOfKin = nextOfKinData;
+          
+          // Validate next of kin data
+          for (let i = 0; i < nextOfKinData.length; i++) {
+            const kin = nextOfKinData[i];
+            if (kin.name && !kin.phone) {
+              throw new Error(`Please provide a phone number for ${kin.name}`);
+            }
+            if (kin.phone && !kin.name) {
+              throw new Error('Please provide a name for the contact with phone number');
+            }
+          }
+          
           // Validate required fields
           if (!data.fullname || !data.age || !data.month || !data['due-date']) {
             throw new Error('Please fill in all required fields');
@@ -139,13 +423,8 @@
           console.log('Response data:', result);
           
           if (response.ok) {
-            // Show success message
-            document.getElementById('success-message').style.display = 'block';
-            
-            // Redirect to mood tracker page after a delay
-            setTimeout(() => {
-              window.location.href = 'mood-tracker.html';
-            }, 2000);
+            // Redirect immediately to mood tracker page
+            window.location.href = 'mood-tracker.html';
           } else {
             // Show error message
             document.getElementById('error-text').textContent = result.error || 'An error occurred';
