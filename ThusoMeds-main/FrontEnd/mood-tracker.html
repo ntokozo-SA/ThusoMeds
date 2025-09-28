@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Mood Tracker - Pregnancy Wellness</title>
+  <title>Daily Report - Pregnancy Wellness</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -12,16 +12,16 @@
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
-      background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+      background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
       border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.1);
     }
 
     .mood-tracker-header {
       text-align: center;
       margin-bottom: 30px;
       padding: 20px;
-      background: linear-gradient(135deg, #e91e63, #f06292);
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
       color: white;
       border-radius: 12px;
     }
@@ -41,7 +41,7 @@
     .current-date {
       text-align: center;
       font-size: 1.2em;
-      color: #666;
+      color: #5b21b6;
       margin-bottom: 25px;
       font-weight: bold;
     }
@@ -51,7 +51,7 @@
       border-radius: 12px;
       padding: 25px;
       margin-bottom: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.1);
     }
 
     .mood-options {
@@ -77,10 +77,10 @@
     }
 
     .mood-option.selected {
-      border-color: #e91e63;
-      background: linear-gradient(135deg, #fce4ec, #f8bbd9);
+      border-color: #7c3aed;
+      background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
     }
 
     .mood-emoji {
@@ -138,7 +138,7 @@
     }
 
     .symptoms-section h3 {
-      color: #e91e63;
+      color: #7c3aed;
       margin-bottom: 15px;
       font-size: 1.3em;
     }
@@ -175,7 +175,7 @@
     }
 
     .submit-btn {
-      background: linear-gradient(135deg, #4caf50, #66bb6a);
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
       color: white;
       border: none;
       padding: 15px 40px;
@@ -184,13 +184,13 @@
       border-radius: 25px;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+      box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
     }
 
     .submit-btn:hover {
-      background: linear-gradient(135deg, #388e3c, #4caf50);
+      background: linear-gradient(135deg, #5b21b6, #7c3aed);
       transform: translateY(-2px);
-      box-shadow: 0 7px 20px rgba(76, 175, 80, 0.4);
+      box-shadow: 0 7px 20px rgba(124, 58, 237, 0.4);
     }
 
     .submit-btn:disabled {
@@ -200,7 +200,7 @@
       box-shadow: none;
     }
 
-    .mood-history {
+    .symptoms-history {
       background: white;
       border-radius: 12px;
       padding: 25px;
@@ -208,38 +208,81 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    .mood-history h3 {
-      color: #e91e63;
+    .symptoms-history h3 {
+      color: #7c3aed;
       margin-bottom: 15px;
       font-size: 1.3em;
     }
 
-    .mood-entry {
+    .symptoms-entry {
       display: flex;
-      align-items: center;
-      padding: 12px;
-      margin-bottom: 10px;
+      align-items: flex-start;
+      padding: 15px;
+      margin-bottom: 15px;
       background: #f8f9fa;
       border-radius: 8px;
       border-left: 4px solid #e91e63;
     }
 
-    .mood-entry-date {
+    .symptoms-entry-date {
       font-weight: bold;
       color: #333;
-      min-width: 120px;
+      min-width: 100px;
+      margin-right: 15px;
     }
 
-    .mood-entry-emoji {
-      font-size: 1.5em;
-      margin: 0 15px;
-    }
-
-    .mood-entry-notes {
+    .symptoms-entry-content {
       flex: 1;
+    }
+
+    .symptoms-entry-notes {
       color: #666;
       font-size: 0.9em;
+      margin-bottom: 8px;
     }
+
+    .symptoms-entry-symptoms {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .symptom-tag {
+      background: #7c3aed;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: 500;
+    }
+
+    .refresh-btn {
+      background: linear-gradient(135deg, #8b5cf6, #a855f7);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      font-size: 0.9em;
+      font-weight: bold;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.3);
+    }
+
+    .refresh-btn:hover {
+      background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.4);
+    }
+
+    .refresh-btn:active {
+      transform: translateY(0);
+    }
+
+    .refresh-btn i {
+      margin-right: 5px;
+    }
+
 
     .success-message {
       background: #d4edda;
@@ -262,15 +305,15 @@
     }
 
     .pregnancy-tips {
-      background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+      background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
       border-radius: 12px;
       padding: 20px;
       margin-top: 20px;
-      border: 2px solid #ffb74d;
+      border: 2px solid #8b5cf6;
     }
 
     .pregnancy-tips h3 {
-      color: #f57c00;
+      color: #7c3aed;
       margin-bottom: 15px;
     }
 
@@ -282,32 +325,6 @@
       font-size: 0.9em;
     }
 
-    .refresh-btn {
-      background: linear-gradient(135deg, #2196f3, #42a5f5);
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      font-size: 0.9em;
-      font-weight: bold;
-      border-radius: 15px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
-    }
-
-    .refresh-btn:hover {
-      background: linear-gradient(135deg, #1976d2, #2196f3);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
-    }
-
-    .refresh-btn:active {
-      transform: translateY(0);
-    }
-
-    .refresh-btn i {
-      margin-right: 5px;
-    }
 
     @media (max-width: 768px) {
       .mood-tracker-container {
@@ -319,23 +336,166 @@
         grid-template-columns: repeat(2, 1fr);
       }
       
-      .mood-tracker-header h1 {
-        font-size: 1.8em;
-      }
+    .mood-tracker-header h1 {
+      font-size: 1.8em;
     }
+  }
+
+
+  /* Preg Fact Button Styles */
+  .preg-fact-button {
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+    margin-top: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .preg-fact-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    background: linear-gradient(135deg, #5b21b6, #4c1d95);
+  }
+
+  .preg-fact-button:active {
+    transform: translateY(0);
+  }
+
+  .preg-fact-display {
+    background: linear-gradient(135deg, #f0f4ff, #e0e7ff);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border-left: 5px solid #7c3aed;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: none;
+    animation: slideIn 0.5s ease-out;
+  }
+
+  .preg-fact-display.show {
+    display: block;
+  }
+
+  .preg-fact-content {
+    color: #5b21b6;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .preg-fact-icon {
+    color: #e91e63;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .preg-fact-button {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    
+    .preg-fact-display {
+      padding: 15px;
+    }
+    
+    .preg-fact-content {
+      font-size: 14px;
+    }
+  }
+
+  /* Hospital Button Styles */
+  .hospital-button-container {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+
+  .hospital-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hospital-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
+    background: linear-gradient(135deg, #7c3aed, #5b21b6);
+    color: white;
+    text-decoration: none;
+  }
+
+  .hospital-button:active {
+    transform: translateY(-1px);
+  }
+
+  .hospital-button i {
+    font-size: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .hospital-button {
+      padding: 12px 24px;
+      font-size: 16px;
+    }
+    
+    .hospital-button i {
+      font-size: 18px;
+    }
+  }
   </style>
 </head>
 <body>
   <div class="mood-tracker-container">
     <div class="mood-tracker-header">
-      <h1><i class="fas fa-heart"></i> Daily Mood Tracker</h1>
-      <p>Track your emotional wellbeing during pregnancy</p>
+      <h1><i class="fas fa-heart"></i> Daily Report</h1>
+      <p>Track your wellbeing during pregnancy</p>
+      
+      <button id="preg-fact-btn" class="preg-fact-button">
+        <i class="fas fa-baby"></i> Preg Fact
+      </button>
+    </div>
+
+    <div id="preg-fact-display" class="preg-fact-display">
+      <!-- Pregnancy facts will appear here -->
     </div>
 
     <div class="current-date" id="current-date"></div>
 
     <div id="success-message" class="success-message">
-      <i class="fas fa-check-circle"></i> <strong>Great!</strong> Your mood has been recorded successfully.
+      <i class="fas fa-check-circle"></i> <strong>Great!</strong> Your report has been recorded successfully.
     </div>
 
     <div id="error-message" class="error-message">
@@ -343,39 +503,12 @@
     </div>
 
     <div class="mood-selection">
-      <h3 style="color: #e91e63; margin-bottom: 20px;">How are you feeling today?</h3>
-      <div class="mood-options">
-        <div class="mood-option" data-mood="excellent">
-          <span class="mood-emoji">😊</span>
-          <div class="mood-label">Excellent</div>
-          <div class="mood-description">Feeling great!</div>
-        </div>
-        <div class="mood-option" data-mood="good">
-          <span class="mood-emoji">😌</span>
-          <div class="mood-label">Good</div>
-          <div class="mood-description">Feeling well</div>
-        </div>
-        <div class="mood-option" data-mood="okay">
-          <span class="mood-emoji">😐</span>
-          <div class="mood-label">Okay</div>
-          <div class="mood-description">Neutral</div>
-        </div>
-        <div class="mood-option" data-mood="anxious">
-          <span class="mood-emoji">😰</span>
-          <div class="mood-label">Anxious</div>
-          <div class="mood-description">Feeling worried</div>
-        </div>
-        <div class="mood-option" data-mood="sad">
-          <span class="mood-emoji">😢</span>
-          <div class="mood-label">Sad</div>
-          <div class="mood-description">Feeling down</div>
-        </div>
-        <div class="mood-option" data-mood="overwhelmed">
-          <span class="mood-emoji">😵</span>
-          <div class="mood-label">Overwhelmed</div>
-          <div class="mood-description">Too much to handle</div>
-        </div>
+      <div class="hospital-button-container">
+        <a href="clinic.html" class="hospital-button">
+          <i class="fas fa-hospital"></i> HOSPITAL
+        </a>
       </div>
+
 
       <div class="mood-notes">
         <label for="mood-notes">Additional notes (optional):</label>
@@ -427,19 +560,19 @@
 
     <div class="submit-mood">
       <button type="button" id="submit-mood-btn" class="submit-btn">
-        <i class="fas fa-save"></i> Save Today's Mood
+        <i class="fas fa-save"></i> Save Today's Report 
       </button>
     </div>
 
-    <div class="mood-history">
+    <div class="symptoms-history">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <h3 style="margin: 0;"><i class="fas fa-history"></i> Recent Mood History</h3>
-        <button type="button" id="refresh-history-btn" class="refresh-btn" title="Refresh mood history">
+        <h3><i class="fas fa-chart-line"></i> Symptoms History</h3>
+        <button id="refresh-symptoms-btn" class="refresh-btn">
           <i class="fas fa-sync-alt"></i> Refresh
         </button>
       </div>
-      <div id="mood-history-list">
-        <!-- Mood history will be populated here -->
+      <div id="symptoms-history-list">
+        <!-- Symptoms history will be populated here -->
       </div>
     </div>
 
@@ -461,6 +594,8 @@
   </div>
 
   <script>
+    // Mood mappings removed as history functionality was removed
+
     document.addEventListener('DOMContentLoaded', function() {
       // Set current date
       const currentDate = new Date();
@@ -472,20 +607,63 @@
       };
       document.getElementById('current-date').textContent = currentDate.toLocaleDateString('en-US', dateOptions);
 
-      // Mood selection functionality
-      const moodOptions = document.querySelectorAll('.mood-option');
-      let selectedMood = null;
+      // Pregnancy Facts Array
+      const pregnancyFacts = [
+        "A baby's heart starts beating at just 6 weeks gestation - that's only 4 weeks after conception!",
+        "During pregnancy, your blood volume increases by 50% to support both you and your baby.",
+        "A baby can taste what you eat through the amniotic fluid as early as 15 weeks!",
+        "Pregnancy brain is real - your brain actually shrinks during pregnancy and takes up to 2 years to fully recover.",
+        "Your baby's fingerprints are fully formed by 19 weeks of pregnancy.",
+        "A pregnant woman's sense of smell can become 2,000 times more sensitive than normal.",
+        "Babies can hear sounds from outside the womb starting at 18 weeks, including your voice!",
+        "The placenta is the only organ that grows and then gets discarded - it's completely new with each pregnancy.",
+        "Your baby's first poop (meconium) is made up of skin cells, hair, and other materials swallowed in the womb.",
+        "Pregnancy can make your feet grow up to a full shoe size due to hormone changes and weight gain.",
+        "A baby's bones are actually made of cartilage at birth and harden over time.",
+        "Your baby can hiccup in the womb as early as 9 weeks - you might feel it as tiny rhythmic movements!",
+        "Pregnancy hormones can make your hair thicker and shinier, but you might lose some after delivery.",
+        "A baby's taste buds develop at 8 weeks, and they can taste sweet, sour, and bitter flavors in the womb.",
+        "Your uterus grows from the size of a pear to the size of a watermelon during pregnancy!",
+        "Babies can dream in the womb starting around 30 weeks of pregnancy.",
+        "Pregnancy can change your eye prescription due to fluid retention and hormonal changes.",
+        "Your baby's brain grows at an incredible rate - 250,000 neurons per minute in the third trimester!",
+        "Morning sickness is actually a good sign - it's linked to lower rates of miscarriage.",
+        "A baby's first breath triggers major changes in their heart and circulation system."
+      ];
 
-      moodOptions.forEach(option => {
-        option.addEventListener('click', function() {
-          // Remove selected class from all options
-          moodOptions.forEach(opt => opt.classList.remove('selected'));
-          
-          // Add selected class to clicked option
-          this.classList.add('selected');
-          selectedMood = this.dataset.mood;
+      // Preg Fact Button Functionality
+      const pregFactBtn = document.getElementById('preg-fact-btn');
+      const pregFactDisplay = document.getElementById('preg-fact-display');
+
+      pregFactBtn.addEventListener('click', function() {
+        // Get random fact
+        const randomIndex = Math.floor(Math.random() * pregnancyFacts.length);
+        const randomFact = pregnancyFacts[randomIndex];
+        
+        // Display fact with animation
+        pregFactDisplay.innerHTML = `
+          <p class="preg-fact-content">
+            <i class="fas fa-lightbulb preg-fact-icon"></i>
+            <strong>Did you know?</strong> ${randomFact}
+          </p>
+        `;
+        
+        // Show with animation
+        pregFactDisplay.classList.add('show');
+        
+        // Hide after 8 seconds
+        setTimeout(() => {
+          pregFactDisplay.classList.remove('show');
+        }, 8000);
+        
+        // Add click to hide functionality
+        pregFactDisplay.addEventListener('click', function() {
+          this.classList.remove('show');
         });
       });
+
+      // Mood selection functionality - removed as per user request
+      let selectedMood = null;
 
       // Submit mood functionality
       const submitBtn = document.getElementById('submit-mood-btn');
@@ -498,12 +676,8 @@
         successMessage.style.display = 'none';
         errorMessage.style.display = 'none';
 
-        // Validate mood selection
-        if (!selectedMood) {
-          errorText.textContent = 'Please select how you are feeling today.';
-          errorMessage.style.display = 'block';
-          return;
-        }
+        // Set default mood since mood selection was removed
+        selectedMood = 'good';
 
         // Get selected symptoms
         const selectedSymptoms = [];
@@ -541,8 +715,8 @@
             // Show success message
             successMessage.style.display = 'block';
             
-            // Add to local history
-            addMoodToHistory(moodData);
+            // Add to symptoms history
+            addSymptomsToHistory(moodData);
             
             // Reset form
             resetForm();
@@ -551,22 +725,21 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
           } else {
             const result = await response.json();
-            throw new Error(result.error || 'Failed to save mood data');
+            throw new Error(result.error || 'Failed to save report data');
           }
         } catch (error) {
           console.error('Error:', error);
-          errorText.textContent = error.message || 'Failed to save mood data. Please try again.';
+          errorText.textContent = error.message || 'Failed to save report data. Please try again.';
           errorMessage.style.display = 'block';
         } finally {
           // Re-enable submit button
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Today\'s Mood';
+          submitBtn.innerHTML = '<i class="fas fa-save"></i> Save Today\'s Report';
         }
       });
 
       // Reset form function
       function resetForm() {
-        moodOptions.forEach(opt => opt.classList.remove('selected'));
         selectedMood = null;
         document.getElementById('mood-notes').value = '';
         document.querySelectorAll('input[name="symptoms"]').forEach(checkbox => {
@@ -574,50 +747,32 @@
         });
       }
 
-      // Add mood to history function
-      function addMoodToHistory(moodData) {
-        const historyList = document.getElementById('mood-history-list');
+      // Symptoms history functionality
+      function addSymptomsToHistory(reportData) {
+        const historyList = document.getElementById('symptoms-history-list');
         
         // If the history list shows "no history" message, clear it
-        if (historyList.innerHTML.includes('No mood history yet')) {
+        if (historyList.innerHTML.includes('No symptoms history yet')) {
           historyList.innerHTML = '';
         }
         
         // Create a temporary container for the new entry
         const tempContainer = document.createElement('div');
-        displayMoodEntry(moodData, tempContainer);
+        displaySymptomsEntry(reportData, tempContainer);
         
         // Insert at the beginning of the history list
         const newEntry = tempContainer.firstChild;
         historyList.insertBefore(newEntry, historyList.firstChild);
 
         // Limit history to 10 entries
-        const entries = historyList.querySelectorAll('.mood-entry');
+        const entries = historyList.querySelectorAll('.symptoms-entry');
         if (entries.length > 10) {
           entries[entries.length - 1].remove();
         }
       }
 
-      // Load existing mood history from backend
-      loadMoodHistory();
-
-      // Add refresh button functionality
-      const refreshBtn = document.getElementById('refresh-history-btn');
-      refreshBtn.addEventListener('click', function() {
-        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-        this.disabled = true;
-        
-        loadMoodHistory().then(() => {
-          this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
-          this.disabled = false;
-        }).catch(() => {
-          this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
-          this.disabled = false;
-        });
-      });
-
-      async function loadMoodHistory() {
-        const historyList = document.getElementById('mood-history-list');
+      async function loadSymptomsHistory() {
+        const historyList = document.getElementById('symptoms-history-list');
         
         try {
           // Fetch mood entries from backend (last 30 entries)
@@ -628,49 +783,31 @@
             const moodEntries = data.mood_entries || [];
             
             if (moodEntries.length === 0) {
-              historyList.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No mood history yet. Start tracking your daily mood!</p>';
+              historyList.innerHTML = '<p style="text-align: center; color: #666; font-style: italic;">No symptoms history yet. Start tracking your daily symptoms!</p>';
               return;
             }
             
             // Clear existing content
             historyList.innerHTML = '';
             
-            // Display mood entries
+            // Display symptoms entries
             moodEntries.forEach(entry => {
-              displayMoodEntry(entry, historyList);
+              displaySymptomsEntry(entry, historyList);
             });
             
           } else {
-            console.error('Failed to load mood history:', response.statusText);
-            historyList.innerHTML = '<p style="text-align: center; color: #dc3545; font-style: italic;">Failed to load mood history. Please try again later.</p>';
+            console.error('Failed to load symptoms history:', response.statusText);
+            historyList.innerHTML = '<p style="text-align: center; color: #dc3545; font-style: italic;">Failed to load symptoms history. Please try again later.</p>';
           }
         } catch (error) {
-          console.error('Error loading mood history:', error);
-          historyList.innerHTML = '<p style="text-align: center; color: #dc3545; font-style: italic;">Error loading mood history. Please check your connection.</p>';
+          console.error('Error loading symptoms history:', error);
+          historyList.innerHTML = '<p style="text-align: center; color: #dc3545; font-style: italic;">Error loading symptoms history. Please check your connection.</p>';
         }
       }
 
-      function displayMoodEntry(entry, container) {
-        const moodEntry = document.createElement('div');
-        moodEntry.className = 'mood-entry';
-        
-        const moodEmojis = {
-          'excellent': '😊',
-          'good': '😌',
-          'okay': '😐',
-          'anxious': '😰',
-          'sad': '😢',
-          'overwhelmed': '😵'
-        };
-
-        const moodLabels = {
-          'excellent': 'Excellent',
-          'good': 'Good',
-          'okay': 'Okay',
-          'anxious': 'Anxious',
-          'sad': 'Sad',
-          'overwhelmed': 'Overwhelmed'
-        };
+      function displaySymptomsEntry(entry, container) {
+        const symptomsEntry = document.createElement('div');
+        symptomsEntry.className = 'symptoms-entry';
 
         // Parse date and format it
         const entryDate = new Date(entry.date);
@@ -681,23 +818,65 @@
         });
 
         // Parse symptoms if they exist
-        let symptomsText = '';
-        if (entry.symptoms && entry.symptoms.length > 0) {
-          symptomsText = `<br><small style="color: #888;">Symptoms: ${entry.symptoms.join(', ')}</small>`;
+        let symptomsTags = '';
+        if (entry.symptoms) {
+          try {
+            // Parse symptoms from JSON string
+            const symptomsArray = typeof entry.symptoms === 'string' ? JSON.parse(entry.symptoms) : entry.symptoms;
+            if (Array.isArray(symptomsArray) && symptomsArray.length > 0) {
+              symptomsTags = symptomsArray.map(symptom => 
+                `<span class="symptom-tag">${symptom.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</span>`
+              ).join('');
+            }
+          } catch (e) {
+            // If parsing fails, treat as empty
+            console.warn('Failed to parse symptoms:', entry.symptoms);
+          }
         }
 
-        moodEntry.innerHTML = `
-          <div class="mood-entry-date">${formattedDate}</div>
-          <div class="mood-entry-emoji">${moodEmojis[entry.mood] || '😐'}</div>
-          <div class="mood-entry-notes">
-            <strong>${moodLabels[entry.mood] || entry.mood}</strong>
-            ${entry.notes ? ' - ' + entry.notes : ''}
-            ${symptomsText}
+        symptomsEntry.innerHTML = `
+          <div class="symptoms-entry-date">${formattedDate}</div>
+          <div class="symptoms-entry-content">
+            ${entry.notes ? `<div class="symptoms-entry-notes">${entry.notes}</div>` : ''}
+            ${symptomsTags ? `<div class="symptoms-entry-symptoms">${symptomsTags}</div>` : '<div class="symptoms-entry-symptoms"><span class="symptom-tag" style="background: #28a745;">No symptoms reported</span></div>'}
           </div>
         `;
 
-        container.appendChild(moodEntry);
+        container.appendChild(symptomsEntry);
       }
+
+      // Load existing symptoms history from backend
+      loadSymptomsHistory();
+
+      // Add hospital button functionality
+      const hospitalBtn = document.querySelector('.hospital-button');
+      hospitalBtn.addEventListener('click', function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        alert('Next of kin is Arlet');
+        // Navigate to clinic.html after showing the alert
+        window.location.href = 'clinic.html';
+      });
+
+      // Add refresh button functionality
+      const refreshBtn = document.getElementById('refresh-symptoms-btn');
+      refreshBtn.addEventListener('click', function() {
+        this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+        this.disabled = true;
+        
+        loadSymptomsHistory().then(() => {
+          this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
+          this.disabled = false;
+        }).catch(() => {
+          this.innerHTML = '<i class="fas fa-sync-alt"></i> Refresh';
+          this.disabled = false;
+        });
+      });
+
+
+
+
+
+
     });
   </script>
 </body>
